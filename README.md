@@ -1,3 +1,6 @@
-## Developing an App that tracks inventory for businesses.
+## Developing an App that tracks inventory.
 
-> Stack used: MERN stack.
+### Stack
+- Frontend: React
+- Backend: Node.js, Express
+- Database: MongoDB
