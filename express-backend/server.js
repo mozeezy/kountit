@@ -4,6 +4,7 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const dotenv = require("dotenv").config();
+const userRoutes = require("./routes/userRoutes");
 
 // Initialize an express app
 const app = express();
@@ -13,6 +14,10 @@ const PORT = process.env.PORT || 3000;
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(cors());
+
+// Routes
+app.use("/api/users", userRoutes);
 
 // Test the home route
 app.get("/", (req, res) => {
