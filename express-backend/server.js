@@ -4,6 +4,9 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const dotenv = require("dotenv").config();
+
+// Import Routes/Error Handler
+const errorHandler = require("./middleware/errorHandler");
 const userRoutes = require("./routes/userRoutes");
 
 // Initialize an express app
@@ -23,6 +26,9 @@ app.use("/api/users", userRoutes);
 app.get("/", (req, res) => {
   res.send("Hello I'm live from the home route!");
 });
+
+// Error Handler
+app.use(errorHandler);
 
 // Connect to MongoDB Database
 mongoose
