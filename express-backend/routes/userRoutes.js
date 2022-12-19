@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const User = require("../models/userModel");
 const asyncHandler = require("express-async-handler");
+const bcrypt = require("bcryptjs");
 
 // This route is responsible for receiving input from the form component in front-end.
 router.post(
@@ -32,24 +33,27 @@ router.post(
       );
     }
 
+    // Hashing the password BEFORE storing it in the Database.
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
+
     // Create a new user using the User model we created and the data we get from the req.body object.
     const newUser = await User.create({
       name,
       email,
-      password,
+      password: hashedPassword,
     });
 
-
     // If the user exists then respond with the JSON format confirming that the user has been created.
-    if(newUser) {
+    if (newUser) {
       res.status(201).json({
         _id: newUser.id,
         name: newUser.name,
-        email: newUser.email
-      })
+        email: newUser.email,
+      });
     } else {
-      res.status(400)
-      throw new Error("Invalid request.")
+      res.status(400);
+      throw new Error("Invalid request.");
     }
   })
 );
