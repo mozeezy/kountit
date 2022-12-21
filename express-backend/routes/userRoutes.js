@@ -3,6 +3,7 @@ const router = express.Router();
 const User = require("../models/userModel");
 const asyncHandler = require("express-async-handler");
 const bcrypt = require("bcryptjs");
+const JsonWebToken = require("jsonwebtoken");
 
 // This route is responsible for receiving input from the form component in front-end.
 router.post(
