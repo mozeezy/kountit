@@ -55,7 +55,16 @@ router.post(
 
     const token = generateToken(newUser._id);
 
-    // If the user exists then respond with the JSON format confirming that the user has been created.
+    // Send a cookie with the token to the frontend
+    res.cookie("token", token, {
+      path: "/",
+      httpOnly: true,
+      expires: new Date(Date.now() + 1000 * 86400),
+      sameSite: "none",
+      secure: true,
+    });
+
+    // If the user exists then respond with the JSON format confirming that the user has been created. This data is sent to the frontend
     if (newUser) {
       res.status(201).json({
         _id: newUser.id,
