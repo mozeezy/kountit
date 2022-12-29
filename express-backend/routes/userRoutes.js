@@ -5,6 +5,12 @@ const asyncHandler = require("express-async-handler");
 const bcrypt = require("bcryptjs");
 const JsonWebToken = require("jsonwebtoken");
 
+const generateToken = (id) => {
+  return JsonWebToken.sign({ id }, process.env.JWT_SECRET_KEY, {
+    expiresIn: "1d",
+  });
+};
+
 // This route is responsible for receiving input from the form component in front-end.
 router.post(
   "/register",
@@ -45,12 +51,17 @@ router.post(
       password: hashedPassword,
     });
 
+    // Generate JWT once user logs in
+
+    const token = generateToken(newUser._id);
+
     // If the user exists then respond with the JSON format confirming that the user has been created.
     if (newUser) {
       res.status(201).json({
         _id: newUser.id,
         name: newUser.name,
         email: newUser.email,
+        token,
       });
     } else {
       res.status(400);
