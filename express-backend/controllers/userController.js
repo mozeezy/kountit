@@ -9,6 +9,7 @@ const generateToken = (id) => {
   });
 };
 
+// Register User Controller Function
 const registerUser = asyncHandler(async (req, res) => {
   const { name, email, password } = req.body;
 
@@ -46,7 +47,7 @@ const registerUser = asyncHandler(async (req, res) => {
     password: hashedPassword,
   });
 
-  // Generate JWT once user logs in
+  // Generate JWT
 
   const token = generateToken(newUser._id);
 
@@ -73,4 +74,56 @@ const registerUser = asyncHandler(async (req, res) => {
   }
 });
 
-module.exports = { registerUser };
+// Login User Function
+
+const loginUser = asyncHandler(async (req, res) => {
+  const { email, password } = req.body;
+
+  // Validate that the email/password fields are filled
+
+  if (!email || !password) {
+    res.status(400);
+    throw new Error("Please fill in the missing fields");
+  }
+
+  // Check if the user exists in the database
+
+  const isUserInDatabase = await User.findOne({ email });
+
+  if (!isUserInDatabase) {
+    res.status(400);
+    throw new Error("This user does not exist. Please sign up");
+  }
+
+  // Check that the email entered matches the password for that user
+
+  const checkPassword = await bcrypt.compare(
+    password,
+    isUserInDatabase.password
+  );
+
+  const token = generateToken(isUserInDatabase._id);
+
+  // Send a cookie with the token to the frontend
+  res.cookie("token", token, {
+    path: "/",
+    httpOnly: true,
+    expires: new Date(Date.now() + 1000 * 86400),
+    sameSite: "none",
+    secure: true,
+  });
+
+  if (isUserInDatabase && checkPassword) {
+    res.status(200).json({
+      _id: isUserInDatabase.id,
+      name: isUserInDatabase.name,
+      email: isUserInDatabase.email,
+      token,
+    });
+  } else {
+    res.status(400);
+    throw new Error("Invalid email/password");
+  }
+});
+
+module.exports = { registerUser, loginUser };
