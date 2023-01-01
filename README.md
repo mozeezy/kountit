@@ -16,3 +16,6 @@
 
 ### Notes: How to Logout a user?
 - Logging out is simple: just clear the cookie.
+
+
+Currently implementing: User profile creation.
