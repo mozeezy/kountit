@@ -4,11 +4,13 @@ const {
   registerUser,
   loginUser,
   logoutUser,
+  getUserInfo,
 } = require("../controllers/userController");
 
-// This route is responsible for receiving input from the form component in front-end.
+
 router.post("/register", registerUser);
 router.post("/login", loginUser);
 router.get("/logout", logoutUser);
+router.get("/getuser", getUserInfo);
 
 module.exports = router;
