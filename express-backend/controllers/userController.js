@@ -1,7 +1,7 @@
 const User = require("../models/userModel");
 const asyncHandler = require("express-async-handler");
-const bcrypt = require("bcryptjs");
 const JsonWebToken = require("jsonwebtoken");
+const bcrypt = require("bcryptjs");
 
 const generateToken = (id) => {
   return JsonWebToken.sign({ id }, process.env.JWT_SECRET_KEY, {
@@ -41,7 +41,7 @@ const registerUser = asyncHandler(async (req, res) => {
   const hashedPassword = await bcrypt.hash(password, salt);
 
   // Create a new user using the User model we created and the data we get from the req.body object.
-  const newUser = await User.create({
+  const user = await User.create({
     name,
     email,
     password: hashedPassword,
@@ -49,7 +49,7 @@ const registerUser = asyncHandler(async (req, res) => {
 
   // Generate JWT
 
-  const token = generateToken(newUser._id);
+  const token = generateToken(user._id);
 
   // Send a cookie with the token to the frontend
   res.cookie("token", token, {
@@ -61,11 +61,11 @@ const registerUser = asyncHandler(async (req, res) => {
   });
 
   // If the user exists then respond with the JSON format confirming that the user has been created. This data is sent to the frontend
-  if (newUser) {
+  if (user) {
     res.status(201).json({
-      _id: newUser.id,
-      name: newUser.name,
-      email: newUser.email,
+      _id: user.id,
+      name: user.name,
+      email: user.email,
       token,
     });
   } else {
@@ -126,16 +126,32 @@ const loginUser = asyncHandler(async (req, res) => {
   }
 });
 
-
 // Logout user function
 const logoutUser = asyncHandler(async (req, res) => {
-  return res.status(200).clearCookie().json({ message: "Logout Successful" });
+  res.cookie("token", "", {
+    path: "/",
+    httpOnly: true,
+    expires: new Date(Date.now() + 1000 * 86400),
+    sameSite: "none",
+    secure: true,
+  });
+  return res.status(200).json({ message: "Logout Successful" });
 });
 
-
-// Get user info to create a profile
+// Get user info to create a profile. This function provides data ONLY if the user is logged in (i.e. a cookie exists)
 const getUserInfo = asyncHandler(async (req, res) => {
-  res.send("Hey, I'm here");
+  const user = await User.findById(req.user._id);
+
+  if (user) {
+    res.status(200).json({
+      _id: user.id,
+      name: user.name,
+      email: user.email,
+    });
+  } else {
+    res.status(400);
+    throw new Error("User does not exist");
+  }
 });
 
 module.exports = { registerUser, loginUser, logoutUser, getUserInfo };

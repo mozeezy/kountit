@@ -17,5 +17,10 @@
 ### Notes: How to Logout a user?
 - Logging out is simple: just clear the cookie.
 
+### Notes: How to create a user profile?
+- We have to get the data for that specific user from our database.
+- How? We have to use a middleware function that authorizes the user via a cookie.
+- If a cookie exists, it means that the user is logged in. So in that instance, we send the data as a response to the frontend (except the password of course)
+
 
 Currently implementing: User profile creation.
