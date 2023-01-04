@@ -36,15 +36,11 @@ const registerUser = asyncHandler(async (req, res) => {
     );
   }
 
-  // Hashing the password BEFORE storing it in the Database.
-  const salt = await bcrypt.genSalt(10);
-  const hashedPassword = await bcrypt.hash(password, salt);
-
   // Create a new user using the User model we created and the data we get from the req.body object.
   const user = await User.create({
     name,
     email,
-    password: hashedPassword,
+    password,
   });
 
   // Generate JWT
@@ -104,14 +100,15 @@ const loginUser = asyncHandler(async (req, res) => {
 
   const token = generateToken(isUserInDatabase._id);
 
-  // Send a cookie with the token to the frontend
-  res.cookie("token", token, {
-    path: "/",
-    httpOnly: true,
-    expires: new Date(Date.now() + 1000 * 86400),
-    sameSite: "none",
-    secure: true,
-  });
+  if (checkPassword) {
+    res.cookie("token", token, {
+      path: "/",
+      httpOnly: true,
+      expires: new Date(Date.now() + 1000 * 86400),
+      sameSite: "none",
+      secure: true,
+    });
+  }
 
   if (isUserInDatabase && checkPassword) {
     res.status(200).json({
@@ -185,11 +182,8 @@ const changePassword = asyncHandler(async (req, res) => {
 
   const isPasswordMatch = await bcrypt.compare(oldPassword, user.password);
 
-  const salt = await bcrypt.genSalt(10);
-  const hashedPassword = await bcrypt.hash(newPassword, salt);
-
   if (user && isPasswordMatch) {
-    user.password = hashedPassword;
+    user.password = newPassword;
     await user.save();
     res.status(200).send("Your password has been changed successfully.");
   } else {
@@ -198,6 +192,7 @@ const changePassword = asyncHandler(async (req, res) => {
   }
 });
 
+// Forgot password route
 const forgotPassword = asyncHandler(async (req, res) => {
   res.send("Forgot password");
 });
