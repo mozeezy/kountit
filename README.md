@@ -1,4 +1,4 @@
-## Developing an App that tracks inventory.
+## Kountit: an application that allows businesses to track their inventory.
 
 ### Stack
 - Frontend: React
@@ -29,5 +29,7 @@
 - If that is true, then we can update the old password in the database with the new password.
 - The form to change password is going to look like this:
 
-| Old Password | blah blah
-| New Password | blah blah blah
+| Old Password | blah blah |
+| New Password | blah blah blah |
+
+Currently implementing: forgot/reset password
