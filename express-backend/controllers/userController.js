@@ -154,4 +154,24 @@ const getUserInfo = asyncHandler(async (req, res) => {
   }
 });
 
-module.exports = { registerUser, loginUser, logoutUser, getUserInfo };
+// Checks whether the user is logged in or not. This will be very important when it comes to conditional rendering in the frontend by having certain components be visible depending on the boolean evaluation (i.e show a login button when the user is logged out or a logout button when the user is logged in)
+const checkLoginStatus = asyncHandler(async (req, res) => {
+  const token = req.cookies.token;
+  if (!token) {
+    return res.json(false);
+  }
+  const verifyToken = JsonWebToken.verify(token, process.env.JWT_SECRET_KEY);
+
+  if (verifyToken) {
+    return res.json(true);
+  }
+  return res.json(false);
+});
+
+module.exports = {
+  registerUser,
+  loginUser,
+  logoutUser,
+  getUserInfo,
+  checkLoginStatus,
+};
