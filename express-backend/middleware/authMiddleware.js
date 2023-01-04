@@ -8,7 +8,7 @@ const authorize = asyncHandler(async (req, res, next) => {
     if (!token) {
       res.status(401);
       throw new Error(
-        "You're not authorized to access this page. Please login to view the page"
+        "You're not authorized to access this page. Please login to view the page."
       );
     }
     const verifyToken = JsonWebToken.verify(token, process.env.JWT_SECRET_KEY);
@@ -24,7 +24,7 @@ const authorize = asyncHandler(async (req, res, next) => {
   } catch (error) {
     res.status(401);
     throw new Error(
-      "You're not authorized to access this page. Please login to view the page"
+      "You're not authorized to access this page. Please login to view the page."
     );
   }
 });

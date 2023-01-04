@@ -22,3 +22,12 @@
 - How? We have to use a middleware function that authorizes the user via a cookie.
 - If a cookie exists, it means that the user is logged in. So in that instance, we send the data as a response to the frontend (except the password of course)
 
+### Notes: How to change password?
+- To change the password, the user must be logged in first. 
+- We can use the authMiddleware authorize function to see if a user is logged in.
+- Once the user is logged in, we need to check if the old password entered in the form matches the password in the database.
+- If that is true, then we can update the old password in the database with the new password.
+- The form to change password is going to look like this:
+
+| Old Password | blah blah
+| New Password | blah blah blah

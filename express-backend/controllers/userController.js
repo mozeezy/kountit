@@ -16,13 +16,13 @@ const registerUser = asyncHandler(async (req, res) => {
   // Validate that the user has not left any fields empty.
   if (!name || !email || !password) {
     res.status(400);
-    throw new Error("Please fill in the missing fields");
+    throw new Error("Please fill in the missing fields.");
   }
 
   // Validate that the password length is at least 8 characters long
   if (password.length < 8) {
     res.status(400);
-    throw new Error("Password must contain 8 characters");
+    throw new Error("Password must contain 8 characters.");
   }
 
   // Find user in mongoDB database by email.
@@ -32,7 +32,7 @@ const registerUser = asyncHandler(async (req, res) => {
   if (userInDatabase) {
     res.status(400);
     throw new Error(
-      "A user with that email already exists. Please use a different email address"
+      "A user with that email already exists. Please use a different email address."
     );
   }
 
@@ -60,7 +60,7 @@ const registerUser = asyncHandler(async (req, res) => {
     secure: true,
   });
 
-  // If the user exists then respond with the JSON format confirming that the user has been created. This data is sent to the frontend
+  // If the user exists then respond with the JSON format confirming that the user has been created. This data is sent to the frontend.
   if (user) {
     res.status(201).json({
       _id: user.id,
@@ -83,7 +83,7 @@ const loginUser = asyncHandler(async (req, res) => {
 
   if (!email || !password) {
     res.status(400);
-    throw new Error("Please fill in the missing fields");
+    throw new Error("Please fill in the missing fields.");
   }
 
   // Check if the user exists in the database
@@ -92,7 +92,7 @@ const loginUser = asyncHandler(async (req, res) => {
 
   if (!isUserInDatabase) {
     res.status(400);
-    throw new Error("This user does not exist. Please sign up");
+    throw new Error("This user does not exist. Please sign up.");
   }
 
   // Check that the email entered matches the password for that user
@@ -122,7 +122,7 @@ const loginUser = asyncHandler(async (req, res) => {
     });
   } else {
     res.status(400);
-    throw new Error("Invalid email/password");
+    throw new Error("Invalid email/password.");
   }
 });
 
@@ -135,7 +135,7 @@ const logoutUser = asyncHandler(async (req, res) => {
     sameSite: "none",
     secure: true,
   });
-  return res.status(200).json({ message: "Logout Successful" });
+  return res.status(200).json({ message: "Logout Successful." });
 });
 
 // Get user info to create a profile. This function provides data ONLY if the user is logged in (i.e. a cookie exists)
@@ -154,7 +154,7 @@ const getUserInfo = asyncHandler(async (req, res) => {
   }
 });
 
-// Checks whether the user is logged in or not. This will be very important when it comes to conditional rendering in the frontend by having certain components be visible depending on the boolean evaluation (i.e show a login button when the user is logged out or a logout button when the user is logged in)
+// Checks whether the user is logged in or not and returns a boolean. This will be very important when it comes to conditional rendering in the frontend by having certain components be visible depending on the boolean evaluation (i.e show a login button when the user is logged out or a logout button when the user is logged in)
 const checkLoginStatus = asyncHandler(async (req, res) => {
   const token = req.cookies.token;
   if (!token) {
@@ -168,10 +168,41 @@ const checkLoginStatus = asyncHandler(async (req, res) => {
   return res.json(false);
 });
 
+// This controller function handles password change
+const changePassword = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.user._id);
+  const { oldPassword, newPassword } = req.body;
+
+  if (!user) {
+    res.status(400);
+    throw new Error("User does not exist.");
+  }
+
+  if (!oldPassword || !newPassword) {
+    res.status(400);
+    throw new Error("Please fill in the required fields.");
+  }
+
+  const isPasswordMatch = await bcrypt.compare(oldPassword, user.password);
+
+  const salt = await bcrypt.genSalt(10);
+  const hashedPassword = await bcrypt.hash(newPassword, salt);
+
+  if (user && isPasswordMatch) {
+    user.password = hashedPassword;
+    await user.save();
+    res.status(200).send("Your password has been changed successfully.");
+  } else {
+    res.status(400);
+    throw new Error("Your old password is incorrect.");
+  }
+});
+
 module.exports = {
   registerUser,
   loginUser,
   logoutUser,
   getUserInfo,
   checkLoginStatus,
+  changePassword,
 };
