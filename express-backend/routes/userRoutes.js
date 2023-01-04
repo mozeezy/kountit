@@ -7,6 +7,7 @@ const {
   getUserInfo,
   checkLoginStatus,
   changePassword,
+  forgotPassword,
 } = require("../controllers/userController");
 const authorize = require("../middleware/authMiddleware");
 
@@ -16,5 +17,6 @@ router.get("/logout", logoutUser);
 router.get("/getuser", authorize, getUserInfo);
 router.get("/loginstatus", checkLoginStatus);
 router.patch("/changepassword", authorize, changePassword);
+router.post("/forgotpassword", forgotPassword);
 
 module.exports = router;
