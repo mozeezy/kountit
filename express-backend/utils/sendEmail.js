@@ -7,8 +7,8 @@ const sendEmail = async (
   name,
   sendTo,
   sentFrom,
-  replyTo,
-  resetURL
+  resetURL,
+  replyTo
 ) => {
   // Create an SMTP Nodemailer transporter - a protocol that is common for sending email.
   const transporter = nodemailer.createTransport({
