@@ -1,4 +1,3 @@
-
 // Import dependencies
 const express = require("express");
 const bodyParser = require("body-parser");
@@ -10,6 +9,7 @@ const cookieParser = require("cookie-parser");
 // Import Routes/Error Handler
 const errorHandler = require("./middleware/errorHandler");
 const userRoutes = require("./routes/userRoutes");
+const productRoutes = require("./routes/productRoutes");
 
 // Initialize an express app
 const app = express();
@@ -24,6 +24,7 @@ app.use(cors());
 
 // Routes
 app.use("/api/users", userRoutes);
+app.use("/api/products", productRoutes);
 
 // Test the home route
 app.get("/", (req, res) => {

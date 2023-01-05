@@ -9,7 +9,7 @@ const {
   changePassword,
   forgotPassword,
   resetPassword,
-} = require("../controllers/userController");
+} = require("../controllers/userControllers");
 const authorize = require("../middleware/authMiddleware");
 
 router.post("/register", registerUser);
