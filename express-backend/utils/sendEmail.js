@@ -1,6 +1,15 @@
 const nodemailer = require("nodemailer");
+const path = require("path");
+const hbs = require("nodemailer-express-handlebars");
 
-const sendEmail = async (subject, message, sendTo, sentFrom, replyTo) => {
+const sendEmail = async (
+  subject,
+  name,
+  sendTo,
+  sentFrom,
+  replyTo,
+  resetURL
+) => {
   // Create an SMTP Nodemailer transporter - a protocol that is common for sending email.
   const transporter = nodemailer.createTransport({
     host: process.env.EMAIL_HOST,
@@ -13,12 +22,26 @@ const sendEmail = async (subject, message, sendTo, sentFrom, replyTo) => {
       rejectUnauthorized: false,
     },
   });
+  const handlebarOptions = {
+    viewEngine: {
+      partialsDir: path.resolve("./views/"),
+      defaultLayout: false,
+    },
+    viewPath: path.resolve("./views/"),
+  };
+
+  transporter.use("compile", hbs(handlebarOptions));
+
   const options = {
     from: sentFrom,
     to: sendTo,
     subject: subject,
     replyTo: replyTo,
-    html: message,
+    template: "email",
+    context: {
+      name: name,
+      resetURL: resetURL,
+    },
   };
 
   transporter.sendMail(options, (error, info) => {

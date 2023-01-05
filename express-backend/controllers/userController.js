@@ -2,6 +2,9 @@ const User = require("../models/userModel");
 const asyncHandler = require("express-async-handler");
 const JsonWebToken = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
+const Token = require("../models/tokenModel");
+const crypto = require("crypto");
+const sendEmail = require("../utils/sendEmail");
 
 const generateToken = (id) => {
   return JsonWebToken.sign({ id }, process.env.JWT_SECRET_KEY, {
@@ -147,7 +150,7 @@ const getUserInfo = asyncHandler(async (req, res) => {
     });
   } else {
     res.status(400);
-    throw new Error("User does not exist");
+    throw new Error("User does not exist.");
   }
 });
 
@@ -194,7 +197,59 @@ const changePassword = asyncHandler(async (req, res) => {
 
 // Forgot password route
 const forgotPassword = asyncHandler(async (req, res) => {
-  res.send("Forgot password");
+  const { email } = req.body;
+  const user = await User.findOne({ email });
+
+  if (!user) {
+    res.status(404);
+    throw new Error("User does not exist.");
+  }
+
+  let token = await Token.findOne({ userId: user._id });
+  if (token) {
+    await Token.deleteOne();
+  }
+
+  // Create Reset token
+  const resetToken = crypto.randomBytes(32).toString("hex") + user._id;
+
+  // Hash the token before we save it to our database so that we don't have malicious users use the token to reset password
+  const hashToken = crypto
+    .createHash("sha256")
+    .update(resetToken)
+    .digest("hex");
+
+  // Save the reset token to the database
+  const newToken = await Token.create({
+    userId: user._id,
+    token: hashToken,
+    createdAt: Date.now(),
+    expiresAt: Date.now() + 30 * 60 * 1000,
+  });
+
+  const resetURL = `${process.env.URL_BASE}/resetpassword/${resetToken}`;
+
+  // Getting the first name from the full name string
+  const fullName = user.name.split(" ");
+
+  // Creating the email that we're going to sent to the user.
+
+  const subject = "Password Reset Request";
+  const sendTo = user.email;
+  const sentFrom = process.env.EMAIL_USERNAME;
+  const name = fullName[0];
+  const newURL = resetURL;
+
+  try {
+    await sendEmail(subject, name, sendTo, sentFrom, newURL);
+    res.status(200).json({
+      success: true,
+      message: "Your request to reset your password has been sent.",
+    });
+  } catch (error) {
+    res.status(500);
+    throw new Error("Email has not been sent. Please try again.");
+  }
 });
 
 module.exports = {
