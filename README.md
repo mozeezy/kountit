@@ -32,4 +32,10 @@
 | Old Password | blah blah |
 | New Password | blah blah blah |
 
+### Notes: How to forget/reset password?
+- When the user request the forgot password action, a POST request is fired and reset token is created and stored in the database.
+- That token is then sent to the user's email as a link.
+- Once the user clicks the link, another request is sent to a route that compares the token in the URI (i.e. from the req.params object) to the token that is stored in the database.
+- If there's a match, then update the password with the new password.
+
 Currently implementing: forgot/reset password
