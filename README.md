@@ -37,5 +37,3 @@
 - That token is then sent to the user's email as a link.
 - Once the user clicks the link, another request is sent to a route that compares the token in the URI (i.e. from the req.params object) to the token that is stored in the database.
 - If there's a match, then update the password with the new password.
-
-Currently implementing: forgot/reset password
