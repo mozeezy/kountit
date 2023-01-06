@@ -1,35 +1,37 @@
 const multer = require("multer");
 
 // Create a storage engine that multer can use to store items in cloudinary
-// const cloudinary = require("cloudinary").v2;
-// const { CloudinaryStorage } = require("multer-storage-cloudinary");
+const cloudinary = require("cloudinary").v2;
+const { CloudinaryStorage } = require("multer-storage-cloudinary");
 
-// cloudinary.config({
-//   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-//   api_key: process.env.CLOUDINARY_API_KEY,
-//   api_secret: process.env.CLOUDINARY_API_SECRET,
-// });
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
 
-// const storage = new CloudinaryStorage({
-//   cloudinary: cloudinary,
-//   params: {
-//     folder: "Kountit",
-//     allowedFormats: ["jpg", "png", "jpeg"],
-//     useFileName: true,
-//   },
-// });
-
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, "images");
-  },
-  filename: function (req, file, cb) {
-    cb(
-      null,
-      new Date().toISOString().replace(/:/g, "-") + "-" + file.originalname
-    );
+const storage = new CloudinaryStorage({
+  cloudinary: cloudinary,
+  params: {
+    folder: "Kountit",
+    allowedFormats: ["jpg", "png", "jpeg"],
+    useFileName: true,
   },
 });
+
+// This is the storage engine that stores images on the server. May not be ideal when it's time deploy since some hosting platforms have limited features that may not let us store images on the server
+
+// const storage = multer.diskStorage({
+//   destination: function (req, file, cb) {
+//     cb(null, "images");
+//   },
+//   filename: function (req, file, cb) {
+//     cb(
+//       null,
+//       new Date().toISOString().replace(/:/g, "-") + "-" + file.originalname
+//     );
+//   },
+// });
 
 function fileFilter(req, file, cb) {
   if (
