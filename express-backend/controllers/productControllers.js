@@ -55,7 +55,10 @@ const createProduct = asyncHandler(async (req, res) => {
 });
 
 const getAllProducts = asyncHandler(async (req, res) => {
-  res.send("I'm in the getAllProducts route");
+  const products = await Product.find({ user: req.user.id }).sort({
+    createdAt: -1,
+  });
+  res.status(200).json(products);
 });
 
 module.exports = { createProduct, getAllProducts };
