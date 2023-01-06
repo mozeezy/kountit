@@ -1,5 +1,24 @@
 const multer = require("multer");
 
+// Create a storage engine that multer can use to store items in cloudinary
+// const cloudinary = require("cloudinary").v2;
+// const { CloudinaryStorage } = require("multer-storage-cloudinary");
+
+// cloudinary.config({
+//   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+//   api_key: process.env.CLOUDINARY_API_KEY,
+//   api_secret: process.env.CLOUDINARY_API_SECRET,
+// });
+
+// const storage = new CloudinaryStorage({
+//   cloudinary: cloudinary,
+//   params: {
+//     folder: "Kountit",
+//     allowedFormats: ["jpg", "png", "jpeg"],
+//     useFileName: true,
+//   },
+// });
+
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, "images");
