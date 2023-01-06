@@ -28,7 +28,7 @@ const createProduct = asyncHandler(async (req, res) => {
 
   // }
 
-  // Since this controller function runs after 
+  // Since this controller function runs after
   let imageData = {};
   if (req.file) {
     imageData = {
@@ -54,4 +54,8 @@ const createProduct = asyncHandler(async (req, res) => {
   res.status(201).json(product);
 });
 
-module.exports = { createProduct };
+const getAllProducts = asyncHandler(async (req, res) => {
+  res.send("I'm in the getAllProducts route");
+});
+
+module.exports = { createProduct, getAllProducts };
