@@ -61,4 +61,22 @@ const getAllProducts = asyncHandler(async (req, res) => {
   res.status(200).json(products);
 });
 
-module.exports = { createProduct, getAllProducts };
+// Route to get a single product
+const getProduct = asyncHandler(async (req, res) => {
+  const product = await Product.findById(req.params.id);
+  const userProduct = product.user.toString();
+
+  if (userProduct != req.user.id) {
+    res.status(401);
+    throw new Error("You're not authorize to view this page.");
+  }
+
+  if (!product) {
+    res.status(400);
+    throw new Error("Product not found.");
+  }
+
+  res.status(200).json(product);
+});
+
+module.exports = { createProduct, getAllProducts, getProduct };

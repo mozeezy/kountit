@@ -3,6 +3,7 @@ const router = express.Router();
 const {
   createProduct,
   getAllProducts,
+  getProduct,
 } = require("../controllers/productControllers");
 const authorize = require("../middleware/authMiddleware");
 const { upload } = require("../utils/imageUpload");
@@ -12,4 +13,5 @@ router.post("/", authorize, upload.single("image"), createProduct);
 
 // Rest of routes
 router.get("/all-products", authorize, getAllProducts);
+router.get("/:id", authorize, getProduct);
 module.exports = router;
