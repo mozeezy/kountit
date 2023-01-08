@@ -63,9 +63,11 @@ const getAllProducts = asyncHandler(async (req, res) => {
 
 // Route to get a single product
 const getProduct = asyncHandler(async (req, res) => {
-  const product = await Product.findById(req.params.id);
+  const { id } = req.params;
+  const product = await Product.findById(id);
   const userProduct = product.user.toString();
 
+  // req.user.id comes from the authorize function before reaching the controller function and this route.
   if (userProduct != req.user.id) {
     res.status(401);
     throw new Error("You're not authorize to view this page.");
@@ -73,10 +75,29 @@ const getProduct = asyncHandler(async (req, res) => {
 
   if (!product) {
     res.status(400);
-    throw new Error("Product not found.");
+    throw new Error("This product does not exist.");
   }
 
   res.status(200).json(product);
 });
 
-module.exports = { createProduct, getAllProducts, getProduct };
+const deleteProduct = asyncHandler(async (req, res) => {
+  const { id } = req.params;
+  const product = await Product.findById(id);
+  const userProduct = product.user.toString();
+
+  if (!product) {
+    res.status(404);
+    throw new Error("This product does not exist.");
+  }
+
+  if (userProduct != req.user.id) {
+    res.status(401);
+    throw new Error("You're not authorized to view this page.");
+  }
+
+  await product.remove();
+  res.status(200).json({ message: "Product has been successfully removed" });
+});
+
+module.exports = { createProduct, getAllProducts, getProduct, deleteProduct };
