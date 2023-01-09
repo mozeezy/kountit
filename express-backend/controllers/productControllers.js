@@ -1,13 +1,12 @@
 const asyncHandler = require("express-async-handler");
 const Product = require("../models/productModel");
 const { fileSizeFormatter } = require("../utils/imageUpload");
-const cloudinary = require("cloudinary").v2;
+// const cloudinary = require("cloudinary").v2;
 
 const createProduct = asyncHandler(async (req, res) => {
   const { name, sku, category, quantity, price, location, description } =
     req.body;
 
-  console.log(req.file);
   if (!name || !category || !quantity || !price || !location || !description) {
     res.status(400);
     throw new Error("Please fill in the required fields.");
@@ -55,7 +54,8 @@ const createProduct = asyncHandler(async (req, res) => {
 });
 
 const getAllProducts = asyncHandler(async (req, res) => {
-  const products = await Product.find({ user: req.user.id }).sort({
+  const { id } = req.user;
+  const products = await Product.find({ id }).sort({
     createdAt: -1,
   });
   res.status(200).json(products);
@@ -97,7 +97,7 @@ const deleteProduct = asyncHandler(async (req, res) => {
   }
 
   await product.remove();
-  res.status(200).json({ message: "Product has been successfully removed" });
+  res.status(200).json({ message: "Product has been successfully removed." });
 });
 
 module.exports = { createProduct, getAllProducts, getProduct, deleteProduct };

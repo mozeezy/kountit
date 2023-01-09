@@ -37,3 +37,26 @@
 - That token is then sent to the user's email as a link.
 - Once the user clicks the link, another request is sent to a route that compares the token in the URI (i.e. from the req.params object) to the token that is stored in the database.
 - If there's a match, then update the password with the new password.
+
+## Routes pertaining to products
+
+### Notes: How to create a product?
+- According to the product model, each product has nine properties (refer to productModel.js for the schema).
+- To create a product, the user must be logged in. This route is protected by the authorize function in the authMiddleware.js file. This ensures that the user is logged in before accessing this route.
+- Once the user is logged in they can send a POST request with all the properties for the product schema.
+- That product is then created and added to the MongoDB database.
+
+### Notes: How to fetch all products?
+- To fetch all products, we must ensure that user is logged in. Once again, this route is protected by the authorize function which ensures that the user is logged in before they can view the products they have created.
+- From there, it's a simple GET request to the MongoDB database with the user id.
+- This route then sends json data as the response which can then be used by the front-end to display the data.
+
+
+### Notes: How to fetch a single product?
+- After the user is logged in, we can fetch the product id from the req.params object.
+- From there, we have to authenticate whether the user associated with that product and the user accessing that data are the same user. Remember, this route is protected by the authorize function which means that we can access the req.user object from this route.
+- We also have to authenticate whether the product exist in our database.
+- If the above 2 are true, we can make a GET request to the database and then send json data about that product as part of the response object.
+
+### Notes: How to delete a product?
+- Exactly the same fetching the single product, but instead it's a DELETE request.

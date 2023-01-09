@@ -245,7 +245,7 @@ const forgotPassword = asyncHandler(async (req, res) => {
     await sendEmail(subject, name, sendTo, sentFrom, newURL);
     res.status(200).json({
       success: true,
-      message: "Your request to reset your password has been sent.",
+      message: "Your request to reset your password has been sent. Please check your email for the reset link.",
     });
   } catch (error) {
     res.status(500);
