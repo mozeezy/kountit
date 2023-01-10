@@ -15,9 +15,8 @@ const storage = new CloudinaryStorage({
   params: {
     folder: "Kountit",
     allowedFormats: ["jpg", "png", "jpeg"],
-    useFileName: true,
+    use_filename: true,
   },
-  
 });
 
 // This is the storage engine that stores images on the server. May not be ideal when it's time deploy since some hosting platforms have limited features that may not let us store images on the server
