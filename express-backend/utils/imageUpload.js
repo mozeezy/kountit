@@ -17,6 +17,7 @@ const storage = new CloudinaryStorage({
     allowedFormats: ["jpg", "png", "jpeg"],
     useFileName: true,
   },
+  
 });
 
 // This is the storage engine that stores images on the server. May not be ideal when it's time deploy since some hosting platforms have limited features that may not let us store images on the server

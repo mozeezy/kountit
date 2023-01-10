@@ -27,7 +27,6 @@ const createProduct = asyncHandler(async (req, res) => {
 
   // }
 
-  // Since this controller function runs after
   let imageData = {};
   if (req.file) {
     imageData = {
@@ -100,4 +99,57 @@ const deleteProduct = asyncHandler(async (req, res) => {
   res.status(200).json({ message: "Product has been successfully removed." });
 });
 
-module.exports = { createProduct, getAllProducts, getProduct, deleteProduct };
+const updateProductInfo = asyncHandler(async (req, res) => {
+  const { id } = req.params;
+  const { name, category, quantity, price, location, description } = req.body;
+
+  const product = await Product.findById(id);
+  const userProduct = product.user.toString();
+
+  if (!product) {
+    res.status(404);
+    throw new Error("This product does not exist.");
+  }
+
+  if (userProduct != req.user.id) {
+    res.status(401);
+    throw new Error("You're not authorize to view this page.");
+  }
+
+  let imageData = {};
+  if (req.file) {
+    imageData = {
+      fileName: req.file.originalname,
+      filePath: req.file.path,
+      fileMimeType: req.file.mimetype,
+      fileSize: fileSizeFormatter(req.file.size, 2),
+    };
+  }
+
+  const updateProduct = await Product.findByIdAndUpdate(
+    { _id: id },
+    {
+      name,
+      category,
+      quantity,
+      price,
+      location,
+      description,
+      image: Object.keys(imageData).length === 0 ? product.image : imageData,
+    },
+    {
+      new: true,
+      runValidators: true,
+    }
+  );
+
+  res.status(200).json(updateProduct);
+});
+
+module.exports = {
+  createProduct,
+  getAllProducts,
+  getProduct,
+  deleteProduct,
+  updateProductInfo,
+};

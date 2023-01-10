@@ -7,8 +7,10 @@ const dotenv = require("dotenv").config();
 const cookieParser = require("cookie-parser");
 const path = require("path");
 
-// Import Routes/Error Handler
+// Import Error Handler
 const errorHandler = require("./middleware/errorHandler");
+
+// Import Routes
 const userRoutes = require("./routes/userRoutes");
 const productRoutes = require("./routes/productRoutes");
 
