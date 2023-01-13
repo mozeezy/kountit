@@ -2,6 +2,7 @@ nav {
   padding: 1rem 2rem;
   display: flex;
   justify-content: space-between;
+  background-color: var(--primary-light);
 }
 
 .container--links {
@@ -17,7 +18,7 @@ nav {
 }
 
 .landing {
-  padding-top: 2rem;
+  padding-top: 4rem;
 }
 
 .landing-container {
@@ -36,7 +37,7 @@ nav {
 
 @media screen and (max-width: 1024px) {
   .landing-container {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     gap: 1.2rem;
   }
 }
