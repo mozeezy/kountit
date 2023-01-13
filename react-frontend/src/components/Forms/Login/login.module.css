@@ -1,0 +1,51 @@
+.login {
+  min-height: 80vh;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form {
+  width: 35rem;
+  padding: 1.5rem;
+  background-color: #fff;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.home {
+  display: flex;
+}
+
+.login_icon {
+  color: var(--light-bg-dark-shadow)
+}
+
+
+
+form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+input[type="text"],
+input[type="password"] {
+  padding: 1rem;
+  margin: 1rem auto;
+  width: 100%;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+a {
+  display: flex;
+}
+
+span {
+  display: flex;
+}
+

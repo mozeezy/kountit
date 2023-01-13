@@ -28,7 +28,7 @@
 
   --container-width-lg: 80%;
   --container-width-md: 86%;
-  --container-width-sm: 90%;
+  --container-width-sm: 95%;
 }
 
 html {
@@ -46,9 +46,13 @@ body {
   line-height: 1.7;
 }
 
+p {
+  color: var(--dark-bg);
+}
+
 /* general styles */
 .container {
-  width: var(--container-width-lg);
+  width: var(--container-width-sm);
   margin: 0 auto;
 }
 
@@ -105,7 +109,7 @@ a:hover {
 
 .btn:hover {
   background: var(--primary-light);
-  color: var(--primary-main);
+  color: var(--light-bg-dark-shadow);
   border-color: transparent;
 }
 
