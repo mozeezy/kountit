@@ -1,0 +1,53 @@
+nav {
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.container--links {
+  display: flex;
+}
+
+.btn {
+  margin-left: 1rem;
+}
+
+.register {
+  margin-top: 0.5rem;
+}
+
+.landing {
+  padding-top: 2rem;
+}
+
+.landing-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2.5rem;
+}
+
+.landing-text {
+  padding-right: 1rem;
+}
+
+.landing-image {
+  border-radius: 10px;
+}
+
+@media screen and (max-width: 1024px) {
+  .landing-container {
+    grid-template-columns: 1fr 1fr;
+    gap: 1.2rem;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .landing-container {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  .landing-image {
+    padding-top: 1rem;
+    margin: 0;
+  }
+}
