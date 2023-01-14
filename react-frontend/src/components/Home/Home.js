@@ -8,16 +8,18 @@ function Home() {
   return (
     <div id="home">
       <nav className="nav-bar--container">
-        <div className="logo">
-          <TbLetterK size={40} />
-        </div>
+        <Link to="/">
+          <div className="logo">
+            <TbLetterK size={40} />
+          </div>
+        </Link>
 
         <ul className="container--links">
           <li className="register">
             <Link to="/register">Register</Link>
           </li>
           <li>
-            <button className="btn">
+            <button className="btn login-btn">
               <Link to="/login">Login</Link>
             </button>
           </li>
@@ -40,7 +42,9 @@ function Home() {
             </p>
             <br />
             <button className="btn">
-              <Link to="/register">Get Started</Link>
+              <Link to="/register" className="started-txt">
+                Get Started
+              </Link>
             </button>
           </article>
 

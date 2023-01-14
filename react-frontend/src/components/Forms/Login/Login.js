@@ -17,21 +17,23 @@ const Login = () => {
           <div className={classes.login_icon}>
             <CiLogin size={40}></CiLogin>
           </div>
+          <br />
           <h2>Login</h2>
+          <br />
           <form>
             <input
-              type="text"
-              placeholder="E-mail address"
+              type="email"
+              placeholder="📧 E-mail address"
               required
               name="email"
             />
             <input
               type="password"
-              placeholder="Password"
+              placeholder="⦁⦁⦁ Password"
               required
               name="password"
             />
-            <button type="submit" className="btn">
+            <button type="submit" className={classes.btn}>
               Submit
             </button>
           </form>
