@@ -6,7 +6,6 @@ const Body = ({ children }) => {
   return (
     <>
       <Header />
-      <h1>Hello</h1>
       <div>{children}</div>
       <Footer />
     </>

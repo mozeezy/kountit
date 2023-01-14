@@ -12,9 +12,10 @@
 }
 
 .children_container {
-  display: flex;
+  /* display: flex;
+  flex-direction: column; */
   padding: 2rem;
-  flex-wrap: wrap;
+  width: max-content;
 }
 
 .dashboard_icon {
