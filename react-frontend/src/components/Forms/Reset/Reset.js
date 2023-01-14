@@ -1,13 +1,13 @@
 import React from "react";
 import Card from "../../Card/Card";
-import classes from "./register.module.css";
+import classes from "../Login/login.module.css";
 import { CiHome } from "react-icons/ci";
-import { FiUserPlus } from "react-icons/fi";
+import { RxReset } from "react-icons/rx";
 import { Link } from "react-router-dom";
 
-const Register = () => {
+const Reset = () => {
   return (
-    <div className={`container ${classes.register}`}>
+    <div className={`container ${classes.login}`}>
       <Card>
         <div className={classes.form}>
           <div className={classes.home}>
@@ -15,31 +15,24 @@ const Register = () => {
               <CiHome size={25}></CiHome>
             </Link>
           </div>
-          <div className={classes.register_icon}>
-            <FiUserPlus size={40}></FiUserPlus>
+          <div className={classes.login_icon}>
+            <RxReset size={40}></RxReset>
           </div>
           <br />
-          <h2>Register</h2>
+          <h2>Reset Password Form</h2>
           <br />
           <form>
-            <input type="text" placeholder="👤 Name" required name="name" />
-            <input
-              type="email"
-              placeholder=" 📧 E-mail address"
-              required
-              name="email"
-            />
             <input
               type="password"
-              placeholder="⦁⦁⦁ Password"
+              placeholder="⦁⦁⦁ New Password"
               required
               name="password"
             />
             <input
               type="password"
-              placeholder="⦁⦁⦁ Confirm Password"
+              placeholder="⦁⦁⦁ Confirm New Password"
               required
-              name="confirmPassword"
+              name="newPassword"
             />
             <button type="submit" className={classes.btn}>
               Submit
@@ -56,4 +49,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default Reset;

@@ -1,0 +1,29 @@
+.sidebar_container {
+  display: flex;
+  /* justify-content: space-around; */
+}
+
+.sidebar_container_item {
+  width: max-content;
+  height: 100vh;
+  text-align: center;
+  padding: 4rem;
+  display: flex;
+}
+
+.children_container {
+  display: flex;
+  padding: 2rem;
+  flex-wrap: wrap;
+}
+
+.dashboard_icon {
+  width: max-content;
+  height: max-content;
+  margin: 0 auto;
+  color: var(--light-bg-dark-shadow);
+  box-shadow: 0px 0px 2px #ffff, 0px 0px 0px 5px #ecf0f3, 8px 8px 15px #a7aaaf,
+    -8px -8px 15px #ffffff;
+  border-radius: 60px;
+  margin-right: 1rem;
+}

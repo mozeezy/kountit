@@ -1,6 +1,6 @@
 nav {
   padding: 1rem 2rem;
-  margin: 1rem;
+  margin: 1.5rem;
   display: flex;
   justify-content: space-between;
   border-radius: 40px;
@@ -39,6 +39,7 @@ nav {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 2.5rem;
+  padding: 1rem;
 }
 
 .landing-text {

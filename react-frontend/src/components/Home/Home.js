@@ -7,7 +7,7 @@ import headerIMG from "../../assets/inventory_solution.jpeg";
 function Home() {
   return (
     <div id="home">
-      <nav className="nav-bar--container">
+      <nav>
         <Link to="/">
           <div className="logo">
             <TbLetterK size={40} />
@@ -42,7 +42,7 @@ function Home() {
             </p>
             <br />
             <button className="btn">
-              <Link to="/register" className="started-txt">
+              <Link to="/dashboard" className="started-txt">
                 Get Started
               </Link>
             </button>
