@@ -1,9 +1,9 @@
+.sidebar {
+  display: flex;
+}
 .sidebar_card {
-  width: max-content;
-  height: max-content;
   padding: 3rem;
   margin: 2rem;
-  text-align: center;
 }
 
 .sidebar_list {
