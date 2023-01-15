@@ -18,11 +18,9 @@ function Home() {
           <li className="register">
             <Link to="/register">Register</Link>
           </li>
-          <li>
             <button className="btn login-btn">
               <Link to="/login">Login</Link>
             </button>
-          </li>
         </ul>
       </nav>
 
