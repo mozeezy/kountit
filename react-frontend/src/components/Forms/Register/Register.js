@@ -12,7 +12,7 @@ const Register = () => {
         <div className={classes.form}>
           <div className={classes.home}>
             <Link to="/">
-              <CiHome size={25}></CiHome>
+              <CiHome size={20}></CiHome>
             </Link>
           </div>
           <div className={classes.register_icon}>

@@ -25,7 +25,8 @@
   box-shadow: 0px 0px 2px #ffff, 0px 0px 0px 5px #ecf0f3, 8px 8px 15px #a7aaaf,
     -8px -8px 15px #ffffff;
   display: flex;
-  border-radius: 10px;
+  border-radius: 30px;
+  padding: 0.4rem;
 }
 
 form {

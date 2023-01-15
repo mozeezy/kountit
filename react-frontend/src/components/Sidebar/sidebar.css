@@ -7,8 +7,9 @@
 }
 
 .sidebar_list {
-  margin-top: 7rem;
-  height: auto;
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
 }
 
 .sidebar_item {
@@ -18,7 +19,8 @@
 }
 
 #sidebar_icon {
-  margin-right: 1rem;
+  display: flex;
+  padding-right: 0.5rem;
 }
 
 #active {
@@ -32,7 +34,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 2rem;
+  padding-top: 2rem;
 }
 
 .user_icon {
@@ -48,27 +50,9 @@
     6px 6px 10px rgba(0, 0, 0, 0.2);
 }
 
-#logout {
-  width: fit-content;
-  height: fit-content;
-  background: #f3f0f1;
-  position: relative;
-  border-radius: 3rem;
-  padding: 1rem;
-  text-align: center;
-  cursor: pointer;
-  transition: all 0.1s ease-in-out;
-  box-shadow: -6px -6px 10px rgba(255, 255, 255, 0.8),
-    6px 6px 10px rgba(0, 0, 0, 0.2);
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 3rem;
-  margin-left: 10rem;
-}
-
-#logout:active {
-  opacity: 1;
-  box-shadow: inset -4px -4px 8px rgba(255, 255, 255, 0.5),
-    inset 8px 8px 16px rgba(0, 0, 0, 0.1);
-  color: #79e3b6;
+@media screen and (max-width: 600px) {
+  .sidebar {
+    display: flex;
+    flex-direction: column;
+  }
 }

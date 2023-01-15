@@ -3,7 +3,8 @@
   border-radius: 40px;
   width: fit-content;
   height: fit-content;
-  padding: 1rem;
+  padding: 1.5rem;
+  margin-top: 1.5rem;
   border-radius: 3rem;
   text-align: center;
 }
