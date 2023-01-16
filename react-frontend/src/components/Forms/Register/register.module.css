@@ -19,15 +19,15 @@
   display: flex;
 }
 
-.register_icon {
-  width: max-content;
+.icon {
+  width: fit-content;
+  height: fit-content;
+  padding: 1rem;
+  color: var(--bs-info);
+  box-shadow: inset 2px 2px 8px rgba(55, 94, 148, 0.3),
+    inset -3px -2px 5px rgba(255, 255, 255, 0.8);
+  border-radius: 12px;
   margin: 0 auto;
-  color: var(--light-bg-dark-shadow);
-  box-shadow: 0px 0px 2px #ffff, 0px 0px 0px 5px #ecf0f3, 8px 8px 15px #a7aaaf,
-    -8px -8px 15px #ffffff;
-  display: flex;
-  border-radius: 30px;
-  padding: 0.4rem;
 }
 
 form {

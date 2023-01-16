@@ -83,7 +83,7 @@ const Register = () => {
                 <CiHome size={20}></CiHome>
               </Link>
             </div>
-            <div className={classes.register_icon}>
+            <div className={classes.icon}>
               <FiUserPlus size={40}></FiUserPlus>
             </div>
             <br />
@@ -118,7 +118,7 @@ const Register = () => {
                 value={confirmPassword}
                 onChange={handleOnChange}
               />
-              <button type="submit" className={classes.btn}>
+              <button type="submit" className="btn btn-outline-info">
                 Submit
               </button>
             </form>

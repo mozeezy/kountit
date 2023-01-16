@@ -15,7 +15,7 @@ const Reset = () => {
               <CiHome size={25}></CiHome>
             </Link>
           </div>
-          <div className={classes.login_icon}>
+          <div className={classes.icon}>
             <RxReset size={40}></RxReset>
           </div>
           <br />
@@ -34,7 +34,7 @@ const Reset = () => {
               required
               name="newPassword"
             />
-            <button type="submit" className={classes.btn}>
+            <button type="submit" className="btn btn-outline-info">
               Submit
             </button>
           </form>

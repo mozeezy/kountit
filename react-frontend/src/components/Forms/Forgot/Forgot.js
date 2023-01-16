@@ -15,7 +15,7 @@ const Forgot = () => {
               <CiHome size={25}></CiHome>
             </Link>
           </div>
-          <div className={classes.login_icon}>
+          <div className={classes.icon}>
             <MdPassword size={40}></MdPassword>
           </div>
           <br />
@@ -28,7 +28,7 @@ const Forgot = () => {
               required
               name="email"
             />
-            <button type="submit" className={classes.btn}>
+            <button type="submit" className="btn btn-outline-info">
               Submit
             </button>
           </form>
