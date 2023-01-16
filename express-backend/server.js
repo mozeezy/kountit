@@ -16,14 +16,19 @@ const productRoutes = require("./routes/productRoutes");
 
 // Initialize an express app
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8000;
 
 // Middleware
 app.use(express.json());
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(cors());
+app.use(
+  cors({
+    origin: ["http://localhost:3000"],
+    credentials: true,
+  })
+);
 app.use("/images", express.static(path.join(__dirname, "images")));
 
 // Routes
