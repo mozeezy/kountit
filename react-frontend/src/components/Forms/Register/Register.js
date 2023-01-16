@@ -1,4 +1,4 @@
-import React, { useState, CSSProperties } from "react";
+import React, { useState } from "react";
 import Card from "../../Card/Card";
 import classes from "./register.module.css";
 import { CiHome } from "react-icons/ci";
@@ -11,16 +11,7 @@ import {
   SET_LOGIN,
   SET_USERNAME,
 } from "../../../redux/features/user/userSlice";
-// import Loader from "../../Loader/Loader";
-import ClimbingBoxLoader from "react-spinners/ClimbingBoxLoader";
-const override: CSSProperties = {
-  textAlign: "center",
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
-  width: "100%",
-  height: "100vh",
-};
+import Loader from "../../Loader/Loader";
 
 const initialState = {
   name: "",
@@ -83,7 +74,7 @@ const Register = () => {
   return (
     <div className={`container ${classes.register}`}>
       {loading ? (
-        <ClimbingBoxLoader color="#8672fb" cssOverride={override} />
+        <Loader />
       ) : (
         <Card>
           <div className={classes.form}>

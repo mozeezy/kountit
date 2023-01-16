@@ -11,6 +11,7 @@ import Profile from "./components/Profile/Profile";
 import axios from "axios";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Loader from "./components/Loader/Loader";
 
 axios.defaults.withCredentials = true;
 
@@ -48,6 +49,7 @@ function App() {
             </Sidebar>
           }
         />
+        <Route path="/loader" element={<Loader />} />
       </Routes>
     </BrowserRouter>
   );
