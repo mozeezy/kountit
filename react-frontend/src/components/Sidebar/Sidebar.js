@@ -8,35 +8,16 @@ import { CgWindows } from "react-icons/cg";
 const Sidebar = ({ children }) => {
   return (
     <div className="sidebar">
-      <Card className="sidebar_card">
-        <div className="top_section">
-          <Link to="/">
-            <h1>Kountit</h1>
-          </Link>
+      <div className="container">
+        <div className="row">
+          <div className="col-lg-3 sm-1 mt-3 p-2">
+            <Link to="/">
+              <h3>Kountit</h3>
+            </Link>
+          </div>
         </div>
-        <div className="user_profile_container">
-          <CgWindows size={35} className="user_icon" />
-          <h3>Mohamed Mohamed</h3>
-          <p style={{ color: "silver" }}>ID: 12345</p>
-        </div>
-        <ul className="sidebar_list">
-          {SideBarItem.map((value, key) => {
-            return (
-              <Link to={value.path}>
-                <li
-                  key={key}
-                  className="sidebar_item"
-                  id={window.location.pathname === value.path ? "active" : ""}
-                >
-                  <div id="sidebar_icon">{value.icon}</div>
-                  <div>{value.title}</div>
-                </li>
-              </Link>
-            );
-          })}
-        </ul>
-      </Card>
-      <main>{children}</main>
+        <div className="col-lg-9 md-6 sm-11">{children}</div>
+      </div>
     </div>
   );
 };
