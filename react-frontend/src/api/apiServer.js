@@ -56,3 +56,20 @@ export const logoutUser = async () => {
     toast.error(message);
   }
 };
+
+export const forgotPassword = async (userData) => {
+  try {
+    const response = await axios.post(
+      `${nodeURL}/api/users/forgotpassword`,
+      userData
+    );
+    toast.success(response.data.message);
+    return response.data;
+  } catch (error) {
+    const message =
+      (error.response && error.response.data && error.response.data.message) ||
+      error.message ||
+      error.toString();
+    toast.error(message);
+  }
+};
