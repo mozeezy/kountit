@@ -2,25 +2,28 @@
   display: flex;
 }
 .sidebar_card {
-  padding: 3rem;
-  margin: 2rem;
+  padding: 2rem;
+  margin: 1rem;
+  height: 100vh;
 }
 
-.sidebar_list {
-  padding: 3rem;
-  display: flex;
-  flex-direction: column;
+.sidebar_title {
+  margin-bottom: 1rem;
 }
 
-.sidebar_item {
-  width: 100%;
-  height: 100%;
-  display: flex;
+.sidebar_user_icon {
+  width: fit-content;
+  height: fit-content;
+  padding: 0.5rem;
+  color: var(--bs-info);
+  box-shadow: inset 2px 2px 8px rgba(55, 94, 148, 0.3),
+    inset -3px -2px 5px rgba(255, 255, 255, 0.8);
+  border-radius: 12px;
+  margin-bottom: 0.5rem;
 }
 
-#sidebar_icon {
-  display: flex;
-  padding-right: 0.5rem;
+.sidebar_user_text {
+  font-size: 20px;
 }
 
 #active {
@@ -30,30 +33,107 @@
   color: #79e3b6;
 }
 
-.user_profile_container {
+.sidebar_items {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-top: 2rem;
+  font-size: 15px;
 }
 
-.user_icon {
-  width: fit-content;
-  height: fit-content;
-  background: #f3f0f1;
-  position: relative;
-  border-radius: 2rem;
-  padding: 0.5rem;
+a {
+  text-decoration: none;
+}
+
+main {
+  width: 100%;
+  padding: 2rem;
+}
+
+.logout_icon .btn {
+  padding: 1rem;
+  margin-top: 4rem;
+}
+
+.sidebar_text {
+  margin-left: 1rem;
+}
+
+#hamburger_icon {
+  position: fixed;
+  top: 1rem;
+  z-index: 1000;
+  left: 2rem;
+  height: 4rem;
+  width: 4rem;
+  line-height: 5rem;
+  border-radius: 50%;
+  font-size: 2rem;
+  cursor: pointer;
   text-align: center;
-  transition: all 0.1s ease-in-out;
-  box-shadow: -6px -6px 10px rgba(255, 255, 255, 0.8),
-    6px 6px 10px rgba(0, 0, 0, 0.2);
+}
+
+#hamburger_icon:hover {
+  color: var(--bs-info);
+}
+
+#hamburger_icon .btn {
+  padding: 0.5rem;
+  margin-right: 1rem;
 }
 
 @media screen and (max-width: 600px) {
   .sidebar {
-    display: flex;
     flex-direction: column;
   }
-} 
 
+  .sidebar_container .sidebar_card {
+    height: fit-content;
+    width: fit-content;
+    padding: 1.5rem;
+    display: flex;
+    justify-content: row;
+  }
+
+  .sidebar_user {
+    margin-left: 4rem;
+  }
+
+  .sidebar_user_text {
+    font-size: 15px;
+  }
+
+  .sidebar_user p {
+    font-size: 10px;
+  }
+
+  .sidebar_title {
+    display: none;
+  }
+
+  .sidebar_text {
+    display: none;
+  }
+
+  .sidebar_container ul {
+    padding: 1rem;
+    display: flex;
+    flex-direction: row;
+  }
+
+  .sidebar_items {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  ul .btn {
+    padding-bottom: 0;
+    margin: 1rem;
+  }
+
+  .logout_icon {
+    padding: 0.5rem;
+  }
+
+  #hamburger_icon {
+    display: initial;
+  }
+}
