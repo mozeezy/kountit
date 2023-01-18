@@ -64,6 +64,21 @@ export const forgotPassword = async (userData) => {
       userData
     );
     toast.success(response.data.message);
+  } catch (error) {
+    const message =
+      (error.response && error.response.data && error.response.data.message) ||
+      error.message ||
+      error.toString();
+    toast.error(message);
+  }
+};
+
+export const resetPassword = async (userData, token) => {
+  try {
+    const response = await axios.put(
+      `${nodeURL}/api/users/resetpassword/${token}`,
+      userData
+    );
     return response.data;
   } catch (error) {
     const message =
