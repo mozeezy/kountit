@@ -22,8 +22,17 @@
   margin-bottom: 0.5rem;
 }
 
+.sidebar_user {
+  margin-bottom: 1.5rem;
+}
+
 .sidebar_user_text {
   font-size: 20px;
+  display: flex;
+}
+
+.sidebar_user_name {
+  color: var(--bs-info);
 }
 
 #active {
@@ -83,57 +92,12 @@ main {
   .sidebar {
     flex-direction: column;
   }
-
-  .sidebar_container .sidebar_card {
-    height: fit-content;
-    width: fit-content;
-    padding: 1rem;
-    display: flex;
-    justify-content: row;
-  }
-
-  .sidebar_user {
-    margin-left: 4rem;
-  }
-
-  .sidebar_user_text {
-    font-size: 15px;
-  }
-
-  .sidebar_user p {
-    font-size: 10px;
-  }
-
-  .sidebar_title {
-    display: none;
-  }
-
   .sidebar_text {
     display: none;
   }
 
-  .sidebar_container ul {
+  .sidebar_card {
+    height: max-content;
     padding: 1rem;
-    display: flex;
-    flex-direction: row;
-  }
-
-  .sidebar_items {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  ul .btn {
-    padding-bottom: 0;
-    margin: 1rem;
-  }
-
-  .logout_icon {
-    padding: 0.5rem;
-  }
-
-  #hamburger_icon {
-    display: initial;
   }
 }

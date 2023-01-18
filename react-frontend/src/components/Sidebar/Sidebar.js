@@ -3,7 +3,7 @@ import Card from "../Card/Card";
 import "./sidebar.css";
 import { SideBarItem } from "./SideBarItem";
 import { Link, useNavigate } from "react-router-dom";
-import { CgWindows } from "react-icons/cg";
+import { FaUserCircle } from "react-icons/fa";
 import { IoMdLogOut } from "react-icons/io";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { logoutUser } from "../../api/apiServer";
@@ -15,7 +15,7 @@ const Sidebar = ({ children }) => {
   const navigate = useNavigate();
   const name = useSelector(selectName);
 
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
 
   const toggle = () => {
     setIsOpen(!isOpen);
@@ -31,19 +31,25 @@ const Sidebar = ({ children }) => {
     <div className="sidebar">
       <div
         className="sidebar_container"
-        style={{ display: isOpen ? "block" : "none" }}
+        style={{ display: isOpen ? "initial" : "none" }}
       >
         <Card className="sidebar_card">
           <div className="sidebar_title">
             <h2>Kountit</h2>
           </div>
           <div className="sidebar_user">
-            <CgWindows size={30} className="sidebar_user_icon" />
-            <h3 className="sidebar_user_text">{name}</h3>
+            <FaUserCircle size={30} className="sidebar_user_icon" />
+            <h2 className="sidebar_user_text">
+              Welcome, &nbsp; <span className="sidebar_user_name">{name}</span>
+            </h2>
           </div>
           <ul className="navbar-nav ms-auto pb-2">
             {SideBarItem.map((value, index) => (
-              <Link to={value.path} style={{ textDecoration: "none" }}>
+              <Link
+                to={value.path}
+                style={{ textDecoration: "none" }}
+                key={index}
+              >
                 <li
                   className="btn btn-lg btn-primary mb-4"
                   key={index}
