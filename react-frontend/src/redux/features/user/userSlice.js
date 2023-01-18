@@ -9,7 +9,6 @@ const initialState = {
     name: "",
     email: "",
   },
-  userID: "",
 };
 
 const userSlice = createSlice({
@@ -36,6 +35,5 @@ export const { SET_LOGIN, SET_USERNAME, SAVE_USERDATA } = userSlice.actions;
 export const selectIsLoggedIn = (state) => state.user.isLoggedIn;
 export const selectName = (state) => state.user.name;
 export const selectUserData = (state) => state.user.userData;
-export const selectUserId = (state) => state.user.userID;
 
 export default userSlice.reducer;

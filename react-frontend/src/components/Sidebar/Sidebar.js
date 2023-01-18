@@ -2,16 +2,29 @@ import React, { useState } from "react";
 import Card from "../Card/Card";
 import "./sidebar.css";
 import { SideBarItem } from "./SideBarItem";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { CgWindows } from "react-icons/cg";
 import { IoMdLogOut } from "react-icons/io";
 import { RxHamburgerMenu } from "react-icons/rx";
+import { logoutUser } from "../../api/apiServer";
+import { selectName, SET_LOGIN } from "../../redux/features/user/userSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 const Sidebar = ({ children }) => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const name = useSelector(selectName);
+
   const [isOpen, setIsOpen] = useState(true);
 
   const toggle = () => {
     setIsOpen(!isOpen);
+  };
+
+  const logout = async () => {
+    await logoutUser();
+    await dispatch(SET_LOGIN(false));
+    navigate("/login");
   };
 
   return (
@@ -26,8 +39,7 @@ const Sidebar = ({ children }) => {
           </div>
           <div className="sidebar_user">
             <CgWindows size={30} className="sidebar_user_icon" />
-            <h3 className="sidebar_user_text">Mohamed Mohamed</h3>
-            <p>ID: 12345</p>
+            <h3 className="sidebar_user_text">{name}</h3>
           </div>
           <ul className="navbar-nav ms-auto pb-2">
             {SideBarItem.map((value, index) => (
@@ -46,7 +58,11 @@ const Sidebar = ({ children }) => {
             ))}
           </ul>
           <div className="logout_icon">
-            <Link to="/logout" className="btn btn-lg btn-primary">
+            <Link
+              to="/logout"
+              className="btn btn-lg btn-primary"
+              onClick={logout}
+            >
               <IoMdLogOut />
             </Link>
           </div>
