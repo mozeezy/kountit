@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./navbar.css";
+import { LoggedIn, LoggedOut } from "../Authorize/Authorize";
 
 const NavBar = () => {
   return (
@@ -27,16 +28,27 @@ const NavBar = () => {
           </button>
           <div className="collapse navbar-collapse" id="navbarColor03">
             <ul className="navbar-nav ms-auto">
-              <li className="nav-item">
-                <Link className="btn btn-outline-info me-3" to="/register">
-                  Register
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="btn btn-info" to="/login">
-                  Login
-                </Link>
-              </li>
+              <LoggedOut>
+                <li className="nav-item">
+                  <Link className="btn btn-outline-info me-3" to="/register">
+                    Register
+                  </Link>
+                </li>
+              </LoggedOut>
+              <LoggedOut>
+                <li className="nav-item">
+                  <Link className="btn btn-info" to="/login">
+                    Login
+                  </Link>
+                </li>
+              </LoggedOut>
+              <LoggedIn>
+                <li className="nav-item">
+                  <Link className="btn btn-info" to="/dashboard">
+                    View Dashboard
+                  </Link>
+                </li>
+              </LoggedIn>
             </ul>
           </div>
         </div>

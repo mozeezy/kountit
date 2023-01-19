@@ -27,7 +27,7 @@ const Header = () => {
               stock and scale your business. Improve efficiency and save money
               with real-time inventory updates.{" "}
             </p>
-            <Link to="/dashboard" className="btn btn-outline-info">
+            <Link to="/register" className="btn btn-outline-info">
               Get Started
             </Link>
           </div>

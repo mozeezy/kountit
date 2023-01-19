@@ -15,7 +15,7 @@ const Sidebar = ({ children }) => {
   const navigate = useNavigate();
   const name = useSelector(selectName);
 
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
 
   const toggle = () => {
     setIsOpen(!isOpen);
@@ -35,7 +35,9 @@ const Sidebar = ({ children }) => {
       >
         <Card className="sidebar_card">
           <div className="sidebar_title">
-            <h2>Kountit</h2>
+            <Link to="/">
+              <h2>Kountit</h2>
+            </Link>
           </div>
           <div className="sidebar_user">
             <FaUserCircle size={30} className="sidebar_user_icon" />
