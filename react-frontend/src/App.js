@@ -18,7 +18,18 @@ axios.defaults.withCredentials = true;
 function App() {
   return (
     <BrowserRouter>
-      <ToastContainer />
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+      />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/register" element={<Register />} />
