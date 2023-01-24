@@ -212,7 +212,6 @@ const forgotPassword = asyncHandler(async (req, res) => {
 
   // Create Reset token
   const resetToken = crypto.randomBytes(32).toString("hex") + user._id;
-  console.log(resetToken);
 
   // Hash the token before we save it to our database so that we don't have malicious users use the token to reset password
   const hashToken = crypto
@@ -245,7 +244,8 @@ const forgotPassword = asyncHandler(async (req, res) => {
     await sendEmail(subject, name, sendTo, sentFrom, newURL);
     res.status(200).json({
       success: true,
-      message: "Your request to reset your password has been sent. Please check your email for the reset link.",
+      message:
+        "Your request to reset your password has been sent. Please check your email for the reset link.",
     });
   } catch (error) {
     res.status(500);
