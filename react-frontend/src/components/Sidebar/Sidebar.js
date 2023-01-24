@@ -9,6 +9,7 @@ import { RxHamburgerMenu } from "react-icons/rx";
 import { logoutUser } from "../../api/apiServer";
 import { selectName, SET_LOGIN } from "../../redux/features/user/userSlice";
 import { useDispatch, useSelector } from "react-redux";
+import { AiOutlineHome } from "react-icons/ai";
 
 const Sidebar = ({ children }) => {
   const dispatch = useDispatch();
@@ -24,7 +25,7 @@ const Sidebar = ({ children }) => {
   const logout = async () => {
     await logoutUser();
     await dispatch(SET_LOGIN(false));
-    navigate("/login");
+    navigate("/");
   };
 
   return (
@@ -35,9 +36,7 @@ const Sidebar = ({ children }) => {
       >
         <Card className="sidebar_card">
           <div className="sidebar_title">
-            <Link to="/">
-              <h2>Kountit</h2>
-            </Link>
+            <h2>Kountit</h2>
           </div>
           <div className="sidebar_user">
             <FaUserCircle size={30} className="sidebar_user_icon" />
@@ -72,6 +71,13 @@ const Sidebar = ({ children }) => {
               onClick={logout}
             >
               <IoMdLogOut />
+            </Link>
+            <Link
+              to="/"
+              className="btn btn-lg btn-primary"
+              style={{ marginLeft: "0.5rem" }}
+            >
+              <AiOutlineHome />
             </Link>
           </div>
         </Card>
