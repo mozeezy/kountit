@@ -37,7 +37,7 @@ const Reset = () => {
       );
     }
 
-    if (password != newPassword) {
+    if (password !== newPassword) {
       return toast.error("Your passwords do not match. Please try again.");
     }
 

@@ -88,3 +88,16 @@ export const resetPassword = async (userData, token) => {
     toast.error(message);
   }
 };
+
+export const checkLoginStatus = async () => {
+  try {
+    const response = await axios.get(`${nodeURL}/api/users/loginstatus`);
+    return response.data;
+  } catch (error) {
+    const message =
+      (error.response && error.response.data && error.response.data.message) ||
+      error.message ||
+      error.toString();
+    toast.error(message);
+  }
+};

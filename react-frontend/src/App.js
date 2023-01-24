@@ -12,10 +12,25 @@ import axios from "axios";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Loader from "./components/Loader/Loader";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { checkLoginStatus } from "../src/api/apiServer";
+import { SET_LOGIN } from "./redux/features/user/userSlice";
 
 axios.defaults.withCredentials = true;
 
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    async function isUserLoggedIn() {
+      const result = await checkLoginStatus();
+      console.log(result);
+      dispatch(SET_LOGIN(result));
+    }
+    isUserLoggedIn();
+  }, [dispatch]);
+
   return (
     <BrowserRouter>
       <ToastContainer />
