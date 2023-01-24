@@ -1,7 +1,9 @@
 import React from "react";
+import useRedirectLogout from "../../hooks/useRedirectLogout";
 import Card from "../Card/Card";
 
 const Profile = () => {
+  useRedirectLogout("/login");
   return (
     <div>
       <Card>
