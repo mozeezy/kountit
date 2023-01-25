@@ -1,4 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createProduct } from "../../../api/productServer";
+import { toast } from "react-toastify";
 
 const initialState = {
   product: null,
@@ -9,6 +11,25 @@ const initialState = {
   message: "",
 };
 
+const addNewProduct = createAsyncThunk(
+  "product/createProduct",
+  async (data, thunkAPI) => {
+    try {
+      return await createProduct(data);
+    } catch (error) {
+      console.log(error);
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      console.log(message);
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
 const productSlice = createSlice({
   name: "product",
   initialState,
@@ -18,8 +39,23 @@ const productSlice = createSlice({
     },
   },
   extraReducers: {
-    
-  }
+    [addNewProduct.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [addNewProduct.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.isSuccess = true;
+      console.log(action.payload);
+      state.allProducts.push(action.payload);
+      toast.success("Product added.");
+    },
+    [addNewProduct.rejected]: (state, action) => {
+      state.isError = true;
+      state.isLoading = false;
+      state.message = action.payload;
+      toast.error(action.payload);
+    },
+  },
 });
 
 export const { totalStoreValue } = productSlice.actions;
