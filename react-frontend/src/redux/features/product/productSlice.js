@@ -11,7 +11,7 @@ const initialState = {
   message: "",
 };
 
-const addNewProduct = createAsyncThunk(
+export const addNewProduct = createAsyncThunk(
   "product/createProduct",
   async (data, thunkAPI) => {
     try {
@@ -60,5 +60,7 @@ const productSlice = createSlice({
 
 export const { totalStoreValue } = productSlice.actions;
 console.log(productSlice);
+
+export const selectIsLoading = (state) => state.product.isLoading;
 
 export default productSlice.reducer;
