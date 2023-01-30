@@ -7,3 +7,8 @@ export const createProduct = async (productData) => {
   const response = await axios.post(`${nodeURL}/api/products`, productData);
   return response.data;
 };
+
+export const getAllProducts = async () => {
+  const response = await axios.get(`${nodeURL}/api/products/all-products`);
+  return response.data;
+};

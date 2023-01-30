@@ -1,0 +1,35 @@
+.product_list_container {
+  display: flex;
+  gap: 5rem;
+}
+
+.product_form {
+  display: flex;
+  flex-direction: row;
+}
+
+.table_container {
+  overflow-x: auto;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+}
+
+th {
+  background-color: var(--bs-info);
+  color: white;
+}
+
+td {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+th,
+td {
+  padding: 1rem;
+  text-align: left;
+}
