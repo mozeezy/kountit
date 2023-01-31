@@ -4,6 +4,10 @@ import Loader from "../Loader/Loader";
 import Card from "../Card/Card";
 
 const ProductList = ({ allProducts, isLoading }) => {
+  const truncate = (string) => {
+    return string.length > 16 ? string.substring(0, 10) + "..." : string;
+  };
+
   return (
     <div>
       {isLoading ? (
@@ -31,7 +35,7 @@ const ProductList = ({ allProducts, isLoading }) => {
                     return (
                       <tr key={item._id}>
                         <td> {index + 1}</td>
-                        <td> {item.name}</td>
+                        <td> {truncate(item.name)}</td>
                         <td>{item.location}</td>
                         <td>{item.category}</td>
                         <td>${parseFloat(item.price)}</td>
