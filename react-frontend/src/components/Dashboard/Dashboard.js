@@ -30,7 +30,7 @@ const Dashboard = () => {
   return (
     <div className="dashboard">
       <Card>
-        <h1>Inventory Stats</h1>
+        <h2>Inventory Stats</h2>
         <ProductStats />
       </Card>
         <ProductList allProducts={allProducts} isLoading={isLoading} />
