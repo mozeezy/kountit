@@ -1,14 +1,32 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./productlist.css";
 import Loader from "../Loader/Loader";
 import Card from "../Card/Card";
 import { GrView } from "react-icons/gr";
 import { FiEdit, FiDelete } from "react-icons/fi";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  filterProduct,
+  selectFilter,
+} from "../../redux/features/product/filterSlice";
 
 const ProductList = ({ allProducts, isLoading }) => {
+  const [searchValue, setSearchValue] = useState("");
+
+  const filteredProducts = useSelector(selectFilter);
+  const dispatch = useDispatch();
+
   const truncate = (string) => {
     return string.length > 16 ? string.substring(0, 10) + "..." : string;
   };
+
+  const handleOnChange = (event) => {
+    setSearchValue(event.target.value);
+  };
+
+  useEffect(() => {
+    dispatch(filterProduct({ allProducts, searchValue }));
+  }, [allProducts, searchValue, dispatch]);
 
   return (
     <div>
@@ -32,7 +50,7 @@ const ProductList = ({ allProducts, isLoading }) => {
                 </tr>
               </thead>
               <tbody>
-                {allProducts.map((item, index) => {
+                {filteredProducts.map((item, index) => {
                   return (
                     <tr key={item._id}>
                       <td> {index + 1}</td>
@@ -65,7 +83,9 @@ const ProductList = ({ allProducts, isLoading }) => {
                 <input
                   className="form-control me-sm-2"
                   type="search"
-                  placeholder="Search Products"
+                  placeholder="Search by name"
+                  value={searchValue}
+                  onChange={handleOnChange}
                 />
               </form>
             </div>

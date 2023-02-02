@@ -95,7 +95,7 @@ const productSlice = createSlice({
 });
 
 export const { totalStoreValue } = productSlice.actions;
-console.log(productSlice);
+// console.log(productSlice);
 
 export const selectIsLoading = (state) => state.product.isLoading;
 
