@@ -89,13 +89,13 @@ const ProductList = ({ allProducts, isLoading }) => {
                       <td>${item.quantity * item.price}</td>
                       <td className="table_icons">
                         <span>
-                          <GrView size={20} />
+                          <GrView size={18} />
                         </span>
                         <span>
-                          <FiEdit size={20} />
+                          <FiEdit size={18} />
                         </span>
                         <span>
-                          <FiDelete size={20} />
+                          <FiDelete size={18} />
                         </span>
                       </td>
                     </tr>
