@@ -14,13 +14,12 @@ import ReactPaginate from "react-paginate";
 const ProductList = ({ allProducts, isLoading }) => {
   const [searchValue, setSearchValue] = useState("");
   const [itemOffset, setItemOffset] = useState(0);
-  const itemsPerPage = 1;
+  const itemsPerPage = 2;
 
   const filteredProducts = useSelector(selectFilter);
   const dispatch = useDispatch();
 
   const endOffset = itemOffset + itemsPerPage;
-  console.log(`Loading items from ${itemOffset} to ${endOffset}`);
   const currentItems = filteredProducts.slice(itemOffset, endOffset);
   const pageCount = Math.ceil(filteredProducts.length / itemsPerPage);
 
