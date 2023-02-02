@@ -49,6 +49,20 @@ const ProductList = ({ allProducts, isLoading }) => {
         <Card className="product_list_card">
           <div className="table">
             <h3>Current Inventory</h3>
+            <div className="search_bar">
+              <div className="search_form">
+                <form>
+                  <input
+                    className="form-control me-sm-2"
+                    type="search"
+                    placeholder="Search by name"
+                    value={searchValue}
+                    onChange={handleOnChange}
+                  />
+                </form>
+              </div>
+            </div>
+            <br />
             <table className="table table-hover">
               <thead>
                 <tr className="table-info">
@@ -89,21 +103,9 @@ const ProductList = ({ allProducts, isLoading }) => {
                 })}
               </tbody>
             </table>
+            <br />
           </div>
 
-          <div className="search_bar">
-            <div className="search_form">
-              <form>
-                <input
-                  className="form-control me-sm-2"
-                  type="search"
-                  placeholder="Search by name"
-                  value={searchValue}
-                  onChange={handleOnChange}
-                />
-              </form>
-            </div>
-          </div>
           <ReactPaginate
             breakLabel="..."
             nextLabel="Next"
