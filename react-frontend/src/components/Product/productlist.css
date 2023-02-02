@@ -32,6 +32,27 @@ td {
   margin-left: 0.5rem;
 }
 
+.pagination {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem;
+}
+
+.pagination .page-number {
+  padding: 1rem;
+  cursor: pointer;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.active {
+  color: #fff;
+  background-color: var(--bs-info);
+  height: 100%;
+}
+
 @media screen and (max-width: 1024px) {
   .product_list_card {
     grid-template-columns: 1fr;

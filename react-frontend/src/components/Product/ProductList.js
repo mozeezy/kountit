@@ -9,12 +9,26 @@ import {
   filterProduct,
   selectFilter,
 } from "../../redux/features/product/filterSlice";
+import ReactPaginate from "react-paginate";
 
 const ProductList = ({ allProducts, isLoading }) => {
   const [searchValue, setSearchValue] = useState("");
+  const [itemOffset, setItemOffset] = useState(0);
+  const itemsPerPage = 1;
 
   const filteredProducts = useSelector(selectFilter);
   const dispatch = useDispatch();
+
+  const endOffset = itemOffset + itemsPerPage;
+  console.log(`Loading items from ${itemOffset} to ${endOffset}`);
+  const currentItems = filteredProducts.slice(itemOffset, endOffset);
+  const pageCount = Math.ceil(filteredProducts.length / itemsPerPage);
+
+  const handlePageClick = (event) => {
+    const newOffset = (event.selected * itemsPerPage) % filteredProducts.length;
+
+    setItemOffset(newOffset);
+  };
 
   const truncate = (string) => {
     return string.length > 16 ? string.substring(0, 10) + "..." : string;
@@ -50,7 +64,7 @@ const ProductList = ({ allProducts, isLoading }) => {
                 </tr>
               </thead>
               <tbody>
-                {filteredProducts.map((item, index) => {
+                {currentItems.map((item, index) => {
                   return (
                     <tr key={item._id}>
                       <td> {index + 1}</td>
@@ -77,6 +91,7 @@ const ProductList = ({ allProducts, isLoading }) => {
               </tbody>
             </table>
           </div>
+
           <div className="search_bar">
             <div className="search_form">
               <form>
@@ -90,6 +105,20 @@ const ProductList = ({ allProducts, isLoading }) => {
               </form>
             </div>
           </div>
+          <ReactPaginate
+            breakLabel="..."
+            nextLabel="Next"
+            onPageChange={handlePageClick}
+            pageRangeDisplayed={1}
+            pageCount={pageCount}
+            previousLabel="Prev"
+            renderOnZeroPageCount={null}
+            containerClassName="pagination"
+            pageLinkClassName="page-number"
+            nextLinkClassName="page-number"
+            previousLinkClassName="page-number"
+            activeLinkClassName="active"
+          />
         </Card>
       )}
     </div>
