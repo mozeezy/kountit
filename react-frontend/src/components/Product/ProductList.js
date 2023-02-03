@@ -14,7 +14,7 @@ import ReactPaginate from "react-paginate";
 const ProductList = ({ allProducts, isLoading }) => {
   const [searchValue, setSearchValue] = useState("");
   const [itemOffset, setItemOffset] = useState(0);
-  const itemsPerPage = 2;
+  const itemsPerPage = 7;
 
   const filteredProducts = useSelector(selectFilter);
   const dispatch = useDispatch();
