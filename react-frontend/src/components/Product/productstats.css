@@ -1,0 +1,55 @@
+.product_stats_card {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+
+.total_inventory_card {
+  background: linear-gradient(to right, rgb(142, 45, 226), rgb(74, 0, 224));
+}
+
+.total_store_card {
+  background: linear-gradient(to right, rgb(127, 0, 255), rgb(225, 0, 255));
+}
+
+.out_of_stock_card {
+  background: linear-gradient(to right, rgb(255, 0, 204), rgb(51, 51, 153));
+}
+
+.low_stock_card {
+  background: linear-gradient(to right, rgb(142, 45, 226), rgb(74, 0, 224));
+}
+
+.total_categories_card {
+  background: linear-gradient(to right, rgb(127, 0, 255), rgb(225, 0, 255));
+}
+
+.total_items {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+.total_text {
+  margin-left: 1rem;
+}
+
+.text__white {
+  color: white;
+}
+
+@media screen and (max-width: 1024px) {
+  .product_stats_card {
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .product_stats_card {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+  }
+}

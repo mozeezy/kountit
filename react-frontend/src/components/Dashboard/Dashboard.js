@@ -29,11 +29,8 @@ const Dashboard = () => {
 
   return (
     <div className="dashboard">
-      <Card>
-        <h2>Inventory Stats</h2>
-        <ProductStats />
-      </Card>
-        <ProductList allProducts={allProducts} isLoading={isLoading} />
+      <ProductStats allProducts={allProducts} />
+      <ProductList allProducts={allProducts} isLoading={isLoading} />
     </div>
   );
 };
