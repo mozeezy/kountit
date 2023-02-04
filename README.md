@@ -1,3 +1,3 @@
 ### Introducing Kountit
 
-> Coming soon ...
+> Coming soon ... Built with MERN stack
