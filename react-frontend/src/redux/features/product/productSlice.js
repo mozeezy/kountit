@@ -72,6 +72,32 @@ const productSlice = createSlice({
 
       state.totalStoreValue = newTotalValue;
     },
+    calculateOutOfStock(state, action) {
+      const products = action.payload;
+      let count = 0;
+
+      products.map((item) => {
+        const { quantity } = item;
+        if (quantity === 0 || quantity === "0") {
+          count += 1;
+        }
+      });
+
+      state.outOfStock = count;
+    },
+    calculateLowStock(state, action) {
+      const products = action.payload;
+      let count = 0;
+
+      products.map((item) => {
+        const { quantity } = item;
+        if (quantity <= 3 && quantity !== "0") {
+          count += 1;
+        }
+      });
+
+      state.lowStock = count;
+    },
   },
   extraReducers: {
     [addNewProduct.pending]: (state) => {
@@ -110,10 +136,16 @@ const productSlice = createSlice({
   },
 });
 
-export const { calculateTotalStoreValue } = productSlice.actions;
+export const {
+  calculateTotalStoreValue,
+  calculateOutOfStock,
+  calculateLowStock,
+} = productSlice.actions;
 // console.log(productSlice);
 
 export const selectIsLoading = (state) => state.product.isLoading;
 export const selectTotalStoreValue = (state) => state.product.totalStoreValue;
+export const selectOutOfStock = (state) => state.product.outOfStock;
+export const selectLowStock = (state) => state.product.lowStock;
 
 export default productSlice.reducer;

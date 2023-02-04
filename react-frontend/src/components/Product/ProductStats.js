@@ -7,16 +7,24 @@ import { BsGraphDown } from "react-icons/bs";
 import { BiCategory } from "react-icons/bi";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  calculateLowStock,
+  calculateOutOfStock,
   calculateTotalStoreValue,
+  selectLowStock,
+  selectOutOfStock,
   selectTotalStoreValue,
 } from "../../redux/features/product/productSlice";
 
 const ProductStats = ({ allProducts }) => {
   const dispatch = useDispatch();
   const totalStoreValue = useSelector(selectTotalStoreValue);
+  const outOfStock = useSelector(selectOutOfStock);
+  const lowStock = useSelector(selectLowStock);
 
   useEffect(() => {
     dispatch(calculateTotalStoreValue(allProducts));
+    dispatch(calculateOutOfStock(allProducts));
+    dispatch(calculateLowStock(allProducts));
   }, [dispatch, allProducts]);
 
   function numberWithCommas(x) {
@@ -50,7 +58,7 @@ const ProductStats = ({ allProducts }) => {
           <div className="total_items">
             <AiOutlineStop color="white" size={30} />
             <div className="total_text">
-              <h2 className="text__white">{allProducts.length}</h2>
+              <h2 className="text__white">{outOfStock}</h2>
               <span>Out of Stock</span>
             </div>
           </div>
@@ -59,7 +67,7 @@ const ProductStats = ({ allProducts }) => {
           <div className="total_items">
             <BsGraphDown color="white" size={30} />
             <div className="total_text">
-              <h2 className="text__white">{allProducts.length}</h2>
+              <h2 className="text__white">{lowStock}</h2>
               <span>Low Stock</span>
             </div>
           </div>
