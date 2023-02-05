@@ -7,9 +7,11 @@ import { BsGraphDown } from "react-icons/bs";
 import { BiCategory } from "react-icons/bi";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  calculateCategories,
   calculateLowStock,
   calculateOutOfStock,
   calculateTotalStoreValue,
+  selectCategory,
   selectLowStock,
   selectOutOfStock,
   selectTotalStoreValue,
@@ -20,11 +22,13 @@ const ProductStats = ({ allProducts }) => {
   const totalStoreValue = useSelector(selectTotalStoreValue);
   const outOfStock = useSelector(selectOutOfStock);
   const lowStock = useSelector(selectLowStock);
+  const category = useSelector(selectCategory);
 
   useEffect(() => {
     dispatch(calculateTotalStoreValue(allProducts));
     dispatch(calculateOutOfStock(allProducts));
     dispatch(calculateLowStock(allProducts));
+    dispatch(calculateCategories(allProducts));
   }, [dispatch, allProducts]);
 
   function numberWithCommas(x) {
@@ -76,7 +80,7 @@ const ProductStats = ({ allProducts }) => {
           <div className="total_items">
             <BiCategory color="white" size={30} />
             <div className="total_text">
-              <h2 className="text__white">{allProducts.length}</h2>
+              <h2 className="text__white">{category.length}</h2>
               <span>Total Categories</span>
             </div>
           </div>
