@@ -1,5 +1,9 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { createProduct, getAllProducts } from "../../../api/productServer";
+import {
+  createProduct,
+  deleteProduct,
+  getAllProducts,
+} from "../../../api/productServer";
 import { toast } from "react-toastify";
 
 const initialState = {
@@ -39,6 +43,25 @@ export const getProducts = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       return await getAllProducts();
+    } catch (error) {
+      console.log(error);
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      console.log(message);
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
+export const deleteProducts = createAsyncThunk(
+  "product/deleteProducts",
+  async (id, thunkAPI) => {
+    try {
+      return await deleteProduct(id);
     } catch (error) {
       console.log(error);
       const message =
@@ -129,6 +152,7 @@ const productSlice = createSlice({
       state.message = action.payload;
       toast.error(action.payload);
     },
+
     [getProducts.pending]: (state) => {
       state.isLoading = true;
     },
@@ -136,10 +160,25 @@ const productSlice = createSlice({
       state.isLoading = false;
       state.isSuccess = true;
       state.isError = false;
-      console.log(action.payload);
       state.allProducts = action.payload;
     },
     [getProducts.rejected]: (state, action) => {
+      state.isError = true;
+      state.isLoading = false;
+      state.message = action.payload;
+      toast.error(action.payload);
+    },
+
+    [deleteProducts.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [deleteProducts.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.isSuccess = true;
+      state.isError = false;
+      toast.success("The product was deleted successfully");
+    },
+    [deleteProducts.rejected]: (state, action) => {
       state.isError = true;
       state.isLoading = false;
       state.message = action.payload;

@@ -10,6 +10,12 @@ import {
   selectFilter,
 } from "../../redux/features/product/filterSlice";
 import ReactPaginate from "react-paginate";
+import { confirmAlert } from "react-confirm-alert";
+import "react-confirm-alert/src/react-confirm-alert.css";
+import {
+  deleteProducts,
+  getProducts,
+} from "../../redux/features/product/productSlice";
 
 const ProductList = ({ allProducts, isLoading }) => {
   const [searchValue, setSearchValue] = useState("");
@@ -35,6 +41,51 @@ const ProductList = ({ allProducts, isLoading }) => {
 
   const handleOnChange = (event) => {
     setSearchValue(event.target.value);
+  };
+
+  const dispatchDeleteProduct = async (id) => {
+    await dispatch(deleteProducts(id));
+    await dispatch(getProducts());
+  };
+
+  const deleteDialogue = (id) => {
+    confirmAlert({
+      title: "Delete Product?",
+      message:
+        "Are you sure you want to delete this item? This action cannot be undone.",
+      customUI: ({ onClose }) => {
+        return (
+          <div className="custom-ui">
+            <h1>Delete?</h1>
+            <p>
+              Are you sure you want to remove this product? This action can't be
+              undone.
+            </p>
+            <button
+              className="btn btn-outline-info"
+              onClick={() => {
+                dispatchDeleteProduct(id);
+                onClose();
+              }}
+            >
+              Yes, Delete it!
+            </button>
+            <button className="btn btn-outline-secondary" onClick={onClose}>
+              No
+            </button>
+          </div>
+        );
+      },
+      // buttons: [
+      //   {
+      //     label: "Yes",
+      //     onClick: () => dispatchDeleteProduct(id),
+      //   },
+      //   {
+      //     label: "No",
+      //   },
+      // ],
+    });
   };
 
   useEffect(() => {
@@ -95,7 +146,10 @@ const ProductList = ({ allProducts, isLoading }) => {
                           <FiEdit size={18} />
                         </span>
                         <span>
-                          <FiDelete size={18} />
+                          <FiDelete
+                            size={18}
+                            onClick={() => deleteDialogue(item._id)}
+                          />
                         </span>
                       </td>
                     </tr>
