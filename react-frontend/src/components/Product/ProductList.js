@@ -16,6 +16,7 @@ import {
   deleteProducts,
   getProducts,
 } from "../../redux/features/product/productSlice";
+import { Link } from "react-router-dom";
 
 const ProductList = ({ allProducts, isLoading }) => {
   const [searchValue, setSearchValue] = useState("");
@@ -76,15 +77,6 @@ const ProductList = ({ allProducts, isLoading }) => {
           </div>
         );
       },
-      // buttons: [
-      //   {
-      //     label: "Yes",
-      //     onClick: () => dispatchDeleteProduct(id),
-      //   },
-      //   {
-      //     label: "No",
-      //   },
-      // ],
     });
   };
 
@@ -140,7 +132,9 @@ const ProductList = ({ allProducts, isLoading }) => {
                       <td>${item.quantity * item.price}</td>
                       <td className="table_icons">
                         <span>
-                          <GrView size={18} />
+                          <Link to={`/product-details/${item._id}`}>
+                            <GrView size={18} />
+                          </Link>
                         </span>
                         <span>
                           <FiEdit size={18} />

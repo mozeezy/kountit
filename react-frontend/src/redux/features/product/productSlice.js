@@ -3,6 +3,7 @@ import {
   createProduct,
   deleteProduct,
   getAllProducts,
+  getSingleProduct,
 } from "../../../api/productServer";
 import { toast } from "react-toastify";
 
@@ -62,6 +63,25 @@ export const deleteProducts = createAsyncThunk(
   async (id, thunkAPI) => {
     try {
       return await deleteProduct(id);
+    } catch (error) {
+      console.log(error);
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      console.log(message);
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
+export const getAProduct = createAsyncThunk(
+  "product/getAProduct",
+  async (id, thunkAPI) => {
+    try {
+      return await getSingleProduct(id);
     } catch (error) {
       console.log(error);
       const message =
@@ -179,6 +199,22 @@ const productSlice = createSlice({
       toast.success("The product was deleted successfully");
     },
     [deleteProducts.rejected]: (state, action) => {
+      state.isError = true;
+      state.isLoading = false;
+      state.message = action.payload;
+      toast.error(action.payload);
+    },
+
+    [getAProduct.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [getAProduct.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.isSuccess = true;
+      state.isError = false;
+      state.product = action.payload;
+    },
+    [getAProduct.rejected]: (state, action) => {
       state.isError = true;
       state.isLoading = false;
       state.message = action.payload;
