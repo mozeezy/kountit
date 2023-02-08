@@ -107,7 +107,7 @@ const ProductForm = ({
         </Card>
         <div>
           <button type="submit" class="btn btn-outline-info">
-            Create Product
+            Submit
           </button>
         </div>
       </form>

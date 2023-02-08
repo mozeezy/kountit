@@ -22,3 +22,11 @@ export const getSingleProduct = async (id) => {
   const response = await axios.get(`${nodeURL}/api/products/${id}`);
   return response.data;
 };
+
+export const editProduct = async (id, productData) => {
+  const response = await axios.patch(
+    `${nodeURL}/api/products/${id}`,
+    productData
+  );
+  return response.data;
+};

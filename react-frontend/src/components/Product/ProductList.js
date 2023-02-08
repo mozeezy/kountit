@@ -137,7 +137,9 @@ const ProductList = ({ allProducts, isLoading }) => {
                           </Link>
                         </span>
                         <span>
-                          <FiEdit size={18} />
+                          <Link to={`/edit-product/${item._id}`}>
+                            <FiEdit size={18} />
+                          </Link>
                         </span>
                         <span>
                           <FiDelete

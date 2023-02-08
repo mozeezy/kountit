@@ -2,6 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import {
   createProduct,
   deleteProduct,
+  editProduct,
   getAllProducts,
   getSingleProduct,
 } from "../../../api/productServer";
@@ -82,6 +83,25 @@ export const getAProduct = createAsyncThunk(
   async (id, thunkAPI) => {
     try {
       return await getSingleProduct(id);
+    } catch (error) {
+      console.log(error);
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      console.log(message);
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
+export const updateProduct = createAsyncThunk(
+  "product/updateProduct",
+  async ({ id, productData }, thunkAPI) => {
+    try {
+      return await editProduct(id, productData);
     } catch (error) {
       console.log(error);
       const message =
@@ -220,6 +240,22 @@ const productSlice = createSlice({
       state.message = action.payload;
       toast.error(action.payload);
     },
+
+    [updateProduct.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [updateProduct.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.isSuccess = true;
+      state.isError = false;
+      toast.success("Product has been updated successfully.");
+    },
+    [updateProduct.rejected]: (state, action) => {
+      state.isError = true;
+      state.isLoading = false;
+      state.message = action.payload;
+      toast.error(action.payload);
+    },
   },
 });
 
@@ -232,6 +268,7 @@ export const {
 // console.log(productSlice);
 
 export const selectIsLoading = (state) => state.product.isLoading;
+export const selectProduct = (state) => state.product.product;
 export const selectTotalStoreValue = (state) => state.product.totalStoreValue;
 export const selectOutOfStock = (state) => state.product.outOfStock;
 export const selectLowStock = (state) => state.product.lowStock;
