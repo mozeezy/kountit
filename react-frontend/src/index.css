@@ -115,13 +115,13 @@ body {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
-hr {
+/* hr {
   margin: 1rem 0;
   color: inherit;
   border: 0;
   border-top: 0 solid;
   opacity: 0.25;
-}
+} */
 
 h6,
 .h6,

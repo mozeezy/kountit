@@ -9,6 +9,7 @@ import {
 import { selectIsLoggedIn } from "../../redux/features/user/userSlice";
 import Card from "../Card/Card";
 import "./productdetails.css";
+import parse from "html-react-parser";
 
 const ProductDetails = () => {
   useRedirectLogout("/login");
@@ -54,13 +55,13 @@ const ProductDetails = () => {
             ) : (
               <p>There is no image associated with this product</p>
             )}
-            <div className="product_avail">
+            <div className="product_avail ">
               <h4>Product Availability:</h4>
               <div className="avail_text">
                 {checkProductAvailability(product.quantity)}
               </div>
             </div>
-            <br />
+            <hr />
             <table className="table table-hover">
               <thead>
                 <tr className="table-header-row">
@@ -89,6 +90,18 @@ const ProductDetails = () => {
                 </tr>
               </tbody>
             </table>
+            <hr />
+            <div className="description_card">
+              <div
+                className="card border-info mb-3"
+                style={{ maxWidth: "20rem" }}
+              >
+                <div className="card-header">Product Description</div>
+                <div className="card-body">
+                  <p className="card-text">{parse(product.description)}</p>
+                </div>
+              </div>
+            </div>
           </div>
         )}
       </Card>

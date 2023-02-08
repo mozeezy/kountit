@@ -36,7 +36,7 @@ const ProductStats = ({ allProducts }) => {
   }
   return (
     <Card>
-      <h2>Product Summary</h2>
+      <h2>Inventory Stats</h2>
       <div className="product_stats_card">
         <Card className="total_inventory_card">
           <div className="total_items">
