@@ -55,22 +55,22 @@ const EditProduct = () => {
   const saveProductToDB = async (e) => {
     e.preventDefault();
 
-    const formData = new FormData();
+    const productData = new FormData();
 
-    formData.append("name", product?.name);
-    formData.append("category", product?.category);
-    formData.append("quantity", product?.quantity);
-    formData.append("price", product?.price);
-    formData.append("location", product?.location);
-    formData.append("description", description);
+    productData.append("name", product?.name);
+    productData.append("category", product?.category);
+    productData.append("quantity", product?.quantity);
+    productData.append("price", product?.price);
+    productData.append("location", product?.location);
+    productData.append("description", description);
 
     if (productImg) {
-      formData.append("image", productImg);
+      productData.append("image", productImg);
     }
 
-    console.log(...formData);
+    console.log(...productData);
 
-    await dispatch(updateProduct({ id, formData }));
+    await dispatch(updateProduct({ id, productData }));
     await dispatch(getProducts());
     navigate("/dashboard");
   };

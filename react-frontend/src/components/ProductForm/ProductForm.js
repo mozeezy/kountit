@@ -43,8 +43,8 @@ const ProductForm = ({
             type="text"
             class="form-control"
             placeholder="Product Name"
-            name="productName"
-            value={product?.productName}
+            name="name"
+            value={product?.name}
             onChange={handleOnChange}
             required
           />
@@ -55,8 +55,8 @@ const ProductForm = ({
             type="text"
             class="form-control"
             placeholder="Product Category"
-            name="productCategory"
-            value={product?.productCategory}
+            name="category"
+            value={product?.category}
             onChange={handleOnChange}
             required
           />
@@ -67,8 +67,8 @@ const ProductForm = ({
             type="text"
             class="form-control"
             placeholder="Product Price"
-            name="productPrice"
-            value={product?.productPrice}
+            name="price"
+            value={product?.price}
             onChange={handleOnChange}
             required
           />
@@ -79,8 +79,8 @@ const ProductForm = ({
             type="text"
             class="form-control"
             placeholder="Product Quantity"
-            name="productQuantity"
-            value={product?.productQuantity}
+            name="quantity"
+            value={product?.quantity}
             onChange={handleOnChange}
             required
           />
@@ -91,8 +91,8 @@ const ProductForm = ({
             type="text"
             class="form-control"
             placeholder="Product Location"
-            name="productLocation"
-            value={product?.productLocation}
+            name="location"
+            value={product?.location}
             onChange={handleOnChange}
             required
           />

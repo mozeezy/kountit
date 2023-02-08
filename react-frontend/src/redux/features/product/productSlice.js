@@ -101,6 +101,8 @@ export const updateProduct = createAsyncThunk(
   "product/updateProduct",
   async ({ id, productData }, thunkAPI) => {
     try {
+      console.log(id);
+      console.log(productData);
       return await editProduct(id, productData);
     } catch (error) {
       console.log(error);
@@ -248,6 +250,7 @@ const productSlice = createSlice({
       state.isLoading = false;
       state.isSuccess = true;
       state.isError = false;
+      console.log(action.payload);
       toast.success("Product has been updated successfully.");
     },
     [updateProduct.rejected]: (state, action) => {

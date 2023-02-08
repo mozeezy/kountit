@@ -12,11 +12,11 @@ import Loader from "../Loader/Loader";
 import "./addproduct.css";
 
 const initialState = {
-  productName: "",
-  productCategory: "",
-  productQuantity: "",
-  productPrice: "",
-  productLocation: "",
+  name: "",
+  category: "",
+  quantity: "",
+  price: "",
+  location: "",
 };
 
 const AddProduct = () => {
@@ -30,13 +30,7 @@ const AddProduct = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const {
-    productName,
-    productCategory,
-    productQuantity,
-    productPrice,
-    productLocation,
-  } = product;
+  const { name, category, quantity, price, location } = product;
 
   const handleOnChange = (e) => {
     const { name, value } = e.target;
@@ -58,12 +52,12 @@ const AddProduct = () => {
 
     const formData = new FormData();
 
-    formData.append("name", productName);
+    formData.append("name", name);
     formData.append("sku", createSKU());
-    formData.append("category", productCategory);
-    formData.append("quantity", productQuantity);
-    formData.append("price", productPrice);
-    formData.append("location", productLocation);
+    formData.append("category", category);
+    formData.append("quantity", quantity);
+    formData.append("price", price);
+    formData.append("location", location);
     formData.append("description", description);
     formData.append("image", productImg);
 

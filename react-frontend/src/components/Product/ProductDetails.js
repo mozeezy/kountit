@@ -70,6 +70,7 @@ const ProductDetails = () => {
                   <th className="table-info">Price</th>
                   <th className="table-info">Quantity</th>
                   <th className="table-info">Created At</th>
+                  <th className="table-info">Updated At</th>
                 </tr>
               </thead>
               <tbody>
@@ -80,7 +81,10 @@ const ProductDetails = () => {
                   <td>${product.price}</td>
                   <td>{product.quantity}</td>
                   <td>
-                    <code>{product.createdAt.slice(0, 10)}</code>
+                    <code>{product.createdAt}</code>
+                  </td>
+                  <td>
+                    <code>{product.updatedAt}</code>
                   </td>
                 </tr>
               </tbody>
