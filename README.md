@@ -17,6 +17,22 @@
 
 ## Product Screenshots
 
+### Landing Page
+
+![Homepage](https://github.com/mozeezy/kountit/blob/main/screenshots/home-page.png?raw=true)
+
+### Main Dashboard
+
+![Dashboard](https://github.com/mozeezy/kountit/blob/main/screenshots/dashboard.png?raw=true)
+
+### Add Product
+
+![AddProduct](https://github.com/mozeezy/kountit/blob/main/screenshots/add-product.png?raw=true)
+
+### Login Form
+
+![Login](https://github.com/mozeezy/kountit/blob/main/screenshots/login-form.png?raw=true)
+
 ## Future Improvement
 
 - Better UI design
