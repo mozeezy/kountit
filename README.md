@@ -25,10 +25,6 @@
 
 ![Dashboard](https://github.com/mozeezy/kountit/blob/main/screenshots/dashboard.png?raw=true)
 
-### Add Product
-
-![AddProduct](https://github.com/mozeezy/kountit/blob/main/screenshots/add-product.png?raw=true)
-
 ### Login Form
 
 ![Login](https://github.com/mozeezy/kountit/blob/main/screenshots/login-form.png?raw=true)
