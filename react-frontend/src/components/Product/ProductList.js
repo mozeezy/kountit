@@ -145,6 +145,7 @@ const ProductList = ({ allProducts, isLoading }) => {
                           <FiDelete
                             size={18}
                             onClick={() => deleteDialogue(item._id)}
+                            style={{ cursor: "pointer" }}
                           />
                         </span>
                       </td>

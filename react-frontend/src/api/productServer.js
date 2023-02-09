@@ -1,6 +1,5 @@
 import axios from "axios";
 
-
 export const nodeURL = process.env.REACT_APP_SERVER_URL;
 
 export const createProduct = async (productData) => {
