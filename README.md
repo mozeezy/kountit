@@ -1,6 +1,6 @@
 # Introducing Kountit - A Stock Management Solution
 
-> Currently writing tests for this project.
+> Currently writing automated tests for this project.
 
 ## Features
 
