@@ -1,5 +1,7 @@
 # Introducing Kountit - A Stock Management Solution
 
+> Currently writing tests for this project.
+
 ## Features
 
 - Add products to your inventory in an easy manner.
