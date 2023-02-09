@@ -1,26 +1,16 @@
-/* .product_list_card {
+.product_list_card {
   display: flex;
   flex-direction: column;
-} */
-
-/* .table {
-  overflow-x: auto;
-} */
-
-.search_form {
-  margin-left: 1rem;
-}
-
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
-  width: 100%;
 }
 
 th,
 td {
   text-align: left;
   padding: 1rem;
+}
+
+.search_form {
+  margin-left: 1rem;
 }
 
 .table_icons {
@@ -63,5 +53,13 @@ td {
   .product_list_card {
     grid-template-columns: 1fr;
     gap: 1rem;
+  }
+  table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+  }
+  .table {
+    overflow-x: auto;
   }
 }

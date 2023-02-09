@@ -49,7 +49,7 @@
 @media screen and (max-width: 600px) {
   .product_stats_card {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
   }
 }

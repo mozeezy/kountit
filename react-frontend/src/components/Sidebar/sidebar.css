@@ -1,10 +1,15 @@
 .sidebar {
   display: flex;
+  text-align: center;
 }
 .sidebar_card {
   padding: 3rem;
   margin: 1rem;
   height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .sidebar_title {
@@ -14,7 +19,7 @@
 .sidebar_user_icon {
   width: fit-content;
   height: fit-content;
-  padding: 0.5rem;
+  padding: 0.7rem;
   color: var(--bs-info);
   box-shadow: inset 2px 2px 8px rgba(55, 94, 148, 0.3),
     inset -3px -2px 5px rgba(255, 255, 255, 0.8);
@@ -29,6 +34,7 @@
 .sidebar_user_text {
   font-size: 20px;
   display: flex;
+  text-align: center;
 }
 
 .sidebar_user_name {
@@ -44,6 +50,8 @@
 
 .sidebar_items {
   display: flex;
+  justify-content: center;
+  align-items: center;
   font-size: 15px;
 }
 
@@ -92,12 +100,33 @@ main {
   .sidebar {
     flex-direction: column;
   }
+
   .sidebar_text {
     display: none;
   }
 
   .sidebar_card {
+    width: max-content;
     height: max-content;
     padding: 1rem;
+    display: flex;
+    flex-direction: row;
+  }
+
+  .sidebar_title {
+    display: none;
+  }
+
+  .sidebar_user_text {
+    display: none;
+  }
+
+  .sidebar_menu_items {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .logout_icon {
+    display: flex;
   }
 }

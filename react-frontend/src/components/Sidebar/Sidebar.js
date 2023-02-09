@@ -10,6 +10,7 @@ import { logoutUser } from "../../api/apiServer";
 import { selectName, SET_LOGIN } from "../../redux/features/user/userSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { AiOutlineHome } from "react-icons/ai";
+import Footer from "../Footer/Footer";
 
 const Sidebar = ({ children }) => {
   const dispatch = useDispatch();
@@ -44,26 +45,28 @@ const Sidebar = ({ children }) => {
               Welcome, &nbsp; <span className="sidebar_user_name">{name}</span>
             </h2>
           </div>
-          <ul className="navbar-nav ms-auto pb-2">
-            {SideBarItem.map((value, index) => (
-              <Link
-                to={value.path}
-                style={{ textDecoration: "none" }}
-                key={index}
-              >
-                <li
-                  className="btn btn-lg btn-primary mb-4"
+          <div className="sidebar_menu_items_container">
+            <ul className="sidebar_menu_items">
+              {SideBarItem.map((value, index) => (
+                <Link
+                  to={value.path}
+                  style={{ textDecoration: "none" }}
                   key={index}
-                  id={window.location.pathname === value.path ? "active" : ""}
                 >
-                  <div className="sidebar_items">
-                    {value.icon}
-                    <div className="sidebar_text">{value.title}</div>
-                  </div>
-                </li>
-              </Link>
-            ))}
-          </ul>
+                  <li
+                    className="btn btn-lg btn-primary mb-4"
+                    key={index}
+                    id={window.location.pathname === value.path ? "active" : ""}
+                  >
+                    <div className="sidebar_items">
+                      {value.icon}
+                      <div className="sidebar_text">{value.title}</div>
+                    </div>
+                  </li>
+                </Link>
+              ))}
+            </ul>
+          </div>
           <div className="logout_icon">
             <Link
               to="/logout"

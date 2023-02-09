@@ -101,3 +101,32 @@ export const checkLoginStatus = async () => {
     toast.error(message);
   }
 };
+
+export const getUserInfo = async () => {
+  try {
+    const response = await axios.get(`${nodeURL}/api/users/getuser`);
+    return response.data;
+  } catch (error) {
+    const message =
+      (error.response && error.response.data && error.response.data.message) ||
+      error.message ||
+      error.toString();
+    toast.error(message);
+  }
+};
+
+export const changePassword = async (formData) => {
+  try {
+    const response = await axios.patch(
+      `${nodeURL}/api/users/changepassword`,
+      formData
+    );
+    return response.data;
+  } catch (error) {
+    const message =
+      (error.response && error.response.data && error.response.data.message) ||
+      error.message ||
+      error.toString();
+    toast.error(message);
+  }
+};

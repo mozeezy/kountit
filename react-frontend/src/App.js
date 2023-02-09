@@ -18,6 +18,7 @@ import { checkLoginStatus } from "../src/api/apiServer";
 import { SET_LOGIN } from "./redux/features/user/userSlice";
 import ProductDetails from "./components/Product/ProductDetails";
 import EditProduct from "./components/EditProduct/EditProduct";
+import ChangePassword from "./components/ChangePassword/ChangePassword";
 
 axios.defaults.withCredentials = true;
 
@@ -80,6 +81,14 @@ function App() {
           element={
             <Sidebar>
               <EditProduct />
+            </Sidebar>
+          }
+        />
+        <Route
+          path="/change-password"
+          element={
+            <Sidebar>
+              <ChangePassword />
             </Sidebar>
           }
         />
