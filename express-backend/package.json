@@ -4,8 +4,10 @@
   "description": "",
   "main": "server.js",
   "scripts": {
+    "start": "node server.js",
     "test": "jest",
-    "start": "nodemon server.js"
+    "nodemon": "nodemon server.js"
+    
   },
   "keywords": [],
   "author": "",
