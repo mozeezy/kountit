@@ -28,7 +28,7 @@ function App() {
   useEffect(() => {
     async function isUserLoggedIn() {
       const result = await checkLoginStatus();
-      console.log(result);
+      // console.log(result);
       dispatch(SET_LOGIN(result));
     }
     isUserLoggedIn();

@@ -61,7 +61,7 @@ const AddProduct = () => {
     formData.append("description", description);
     formData.append("image", productImg);
 
-    console.log(...formData);
+    // console.log(...formData);
 
     await dispatch(addNewProduct(formData));
     navigate("/dashboard");

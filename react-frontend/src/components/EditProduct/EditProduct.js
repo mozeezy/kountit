@@ -68,7 +68,7 @@ const EditProduct = () => {
       productData.append("image", productImg);
     }
 
-    console.log(...productData);
+    // console.log(...productData);
 
     await dispatch(updateProduct({ id, productData }));
     await dispatch(getProducts());

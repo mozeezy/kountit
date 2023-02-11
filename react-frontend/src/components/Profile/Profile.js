@@ -24,7 +24,7 @@ const Profile = () => {
     setLoading(true);
     async function getProfile() {
       const response = await getUserInfo();
-      console.log(response);
+      // console.log(response);
       setProfile(response);
       setLoading(false);
       await dispatch(SAVE_USERDATA(response));
