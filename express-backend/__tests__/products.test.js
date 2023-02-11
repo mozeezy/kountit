@@ -32,3 +32,8 @@ describe("Testing Product Routes", () => {
     expect(true).toBe(true);
   });
 });
+
+// What to test
+// 1.) Test that users can register
+// 2.) Test that users can login
+// 3.) Test that users can create new products once they're logged in
