@@ -23,7 +23,7 @@ afterAll(async () => {
 });
 
 describe("Testing Users Routes", () => {
-  it("should return a 401 status code if a logged out user tried to create a product", async () => {
+  it("should return a 401 status code if a user tried to create an account with existing credentials", async () => {
     expect(true).toBe(true);
   });
 });
