@@ -35,8 +35,9 @@
 
 ![Login](https://github.com/mozeezy/kountit/blob/main/screenshots/login-form.png?raw=true)
 
-## Future Improvement
+## Future Improvements
 
-- Better UI design
+- Better UI design.
 - Analytics chart to show overall business performance based on key parameters like profit, shrink, cost of goods, etc...
 - Ability to change the name and profile picutre of users.
+- Create an Apple Store/Google Play version of this app.
