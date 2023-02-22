@@ -31,6 +31,7 @@ const registerUser = asyncHandler(async (req, res) => {
   // Find user in mongoDB database by email.
   const userInDatabase = await User.findOne({ email });
 
+  
   // If the user exists in the database, throw an error
   if (userInDatabase) {
     res.status(400);

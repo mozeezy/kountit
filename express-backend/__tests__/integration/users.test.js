@@ -1,5 +1,5 @@
 const supertest = require("supertest");
-const app = require("../app");
+const app = require("../../app");
 const mongoose = require("mongoose");
 const { MongoMemoryServer } = require("mongodb-memory-server");
 
@@ -26,7 +26,7 @@ afterAll(async () => {
   await mongoose.connection.close();
 });
 
-describe("Testing Users Routes", () => {
+describe("Testing User Routes", () => {
   describe("User Registration", () => {
     it("User that doesn't exist should be able to create an account and get a 200 status code", async () => {
       const response = await supertest(app)
