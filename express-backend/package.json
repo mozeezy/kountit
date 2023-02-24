@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "test": "jest",
+    "test": "env-cmd ./config/test.env jest --watchAll --runInBand",
     "nodemon": "nodemon server.js"
   },
   "keywords": [],
@@ -30,6 +30,7 @@
     "nodemon": "^2.0.20"
   },
   "devDependencies": {
+    "env-cmd": "^8.0.2",
     "jest": "^29.4.2",
     "supertest": "^6.3.3"
   }

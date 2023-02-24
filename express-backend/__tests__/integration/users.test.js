@@ -1,9 +1,9 @@
 const supertest = require("supertest");
-const app = require("../../app");
 const mongoose = require("mongoose");
-const { MongoMemoryServer } = require("mongodb-memory-server");
+const app = require("../../app");
+const User = require("../../models/userModel");
 
-// require("dotenv").config();
+require("dotenv").config();
 
 const fakeUser = {
   name: "Testing",
@@ -17,8 +17,8 @@ const fakeUserLogin = {
 };
 
 beforeAll(async () => {
-  const mongoServer = await MongoMemoryServer.create();
-  await mongoose.connect(mongoServer.getUri());
+  mongoose.connect(process.env.MONGO_DB_TEST_URI);
+  await User.deleteMany();
 });
 
 afterAll(async () => {
@@ -28,12 +28,16 @@ afterAll(async () => {
 
 describe("Testing User Routes", () => {
   describe("User Registration", () => {
-    it("User that doesn't exist should be able to create an account and get a 200 status code", async () => {
+    it("User that doesn't exist should be able to create an account and get a 201 status code", async () => {
       const response = await supertest(app)
         .post("/api/users/register")
         .send(fakeUser);
 
-      expect(response.statusCode).toBe(200);
+      expect(response.statusCode).toBe(201);
+
+      // Confirm that the user data can be fetched from the database by checking if the user payload and the user in the database have the same email
+      const user = await User.findById(response.body._id);
+      expect(response.body.email).toBe(user.email);
     });
 
     it("User with missing credentials should get a 400 status code", async () => {
@@ -76,6 +80,10 @@ describe("Testing User Routes", () => {
         .send(fakeUserLogin);
 
       expect(response.statusCode).toBe(200);
+
+      // Confirm that the user data can be fetched from the database by checking if the user payload and the user in the database have the same email
+      const user = await User.findById(response.body._id);
+      expect(response.body.email).toBe(user.email);
     });
 
     it("User that does not exist shouldn't be able to login and get a 400 status code.", async () => {
