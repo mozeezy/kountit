@@ -35,7 +35,7 @@ describe("Testing User Routes", () => {
 
       expect(response.statusCode).toBe(201);
 
-      // Confirm that the user data can be fetched from the database by checking if the user payload and the user in the database have the same email
+      // Checking if the user payload and the user in the database have the same email to validate that the user is logged in
       const user = await User.findById(response.body._id);
       expect(response.body.email).toBe(user.email);
     });
@@ -81,7 +81,7 @@ describe("Testing User Routes", () => {
 
       expect(response.statusCode).toBe(200);
 
-      // Confirm that the user data can be fetched from the database by checking if the user payload and the user in the database have the same email
+      // Checking if the user payload and the user in the database have the same email to validate that the user is logged in
       const user = await User.findById(response.body._id);
       expect(response.body.email).toBe(user.email);
     });
