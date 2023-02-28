@@ -5,7 +5,7 @@ import Features from "../Features/Features";
 
 const Home = () => {
   return (
-    <div>
+    <div data-testid="home">
       <NavBar />
       <Header />
       <Features />
