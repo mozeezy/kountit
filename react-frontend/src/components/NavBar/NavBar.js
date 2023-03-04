@@ -13,7 +13,7 @@ const NavBar = () => {
       >
         <div className="container">
           <Link className="navbar-brand" to="/">
-            <h4 className="fw-bold">Kountit.</h4>
+            <h4 data-testid="navbar-text" className="fw-bold">Kountit.</h4>
           </Link>
 
           <div>

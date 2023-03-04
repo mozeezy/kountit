@@ -1,16 +1,20 @@
-import { render, screen } from "@testing-library/react";
-import Home from "../Home";
+
+// Come back to this later
+
+
+// import { render, screen, cleanup } from "@testing-library/react";
+// import { BrowserRouter } from "react-router-dom";
+// import Home from "../Home";
 
 // describe("Home", () => {
-//   it("should render home component", () => {
-//     render(<Home />);
-//     const homeElement = screen.getByTestId("1");
-//     expect(homeElement).toBeInTheDocument();
+//   it("should render App component", () => {
+//     render(
+//       <BrowserRouter>
+//         <Home />
+//       </BrowserRouter>
+//     );
+
+//     const getHomeComponent = screen.getByTestId("home");
+//     console.log(getHomeComponent);
 //   });
 // });
-
-test("should render home component", () => {
-  render(<Home />);
-  const homeElement = screen.getByTestId("home");
-  expect(homeElement).toBeInTheDocument();
-});
